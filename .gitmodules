@@ -307,3 +307,6 @@
 [submodule "pi22-3/tanya-pyzhyanova"]
 	path = pi22-3/tanya-pyzhyanova
 	url = https://github.com/Adrenaline22/tanya-pyzhyanova
+[submodule "7_TCP_server"]
+	path = 7_TCP_server
+	url = https://github.com/VladimirAndropov/7_TCP_server
