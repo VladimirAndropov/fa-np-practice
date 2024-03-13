@@ -1,0 +1,120 @@
+[submodule "2_threaded_server"]
+	path = 2_threaded_server
+	url = https://github.com/VladimirAndropov/2_threaded_server.git
+[submodule "1_echo_server"]
+	path = 1_echo_server
+	url = https://github.com/VladimirAndropov/1_echo_server.git
+[submodule "6_Web_server"]
+	path = 6_Web_server
+	url = https://github.com/VladimirAndropov/6_Web_server.git
+[submodule "pi22-1/Kos"]
+	path = pi22-1/Kos
+	url = https://github.com/Duoksi/Kos
+[submodule "pi22-1/Abl"]
+	path = pi22-1/Abl
+	url = https://github.com/mikayra/Abl
+[submodule "pi22-1/bon"]
+	path = pi22-1/bon
+	url = https://github.com/areaal/bon
+[submodule "pi22-1/Kug"]
+	path = pi22-1/Kug
+	url = https://github.com/Con2023/Kug
+[submodule "pi22-1/Kob"]
+	path = pi22-1/Kob
+	url = https://github.com/piccologatto01/Kob
+[submodule "pi22-1/Eme"]
+	path = pi22-1/Eme
+	url = https://github.com/emelyanovaolesya/Eme
+[submodule "pi22-1/Yak"]
+	path = pi22-1/Yak
+	url = https://github.com/YakimkinDaniil/Yak
+[submodule "pi22-1/Ivlev"]
+	path = pi22-1/Ivlev
+	url = https://github.com/Ivlev2004/Ivlev
+[submodule "pi22-1/MAS"]
+	path = pi22-1/MAS
+	url = https://github.com/NastyMishina/MAS
+[submodule "pi22-1/Man"]
+	path = pi22-1/Man
+	url = https://github.com/Kami11144/Man
+[submodule "pi22-1/Giz"]
+	path = pi22-1/Giz
+	url = https://github.com/Butcher044/Giz
+[submodule "pi22-1/Nec"]
+	path = pi22-1/Nec
+	url = https://github.com/lilitanechay/Nec
+[submodule "pi22-1/Gra"]
+	path = pi22-1/Gra
+	url = https://github.com/GrankoNastya/Gra
+[submodule "pi22-1/Gri"]
+	path = pi22-1/Gri
+	url = https://github.com/IamHenryEvery/Gri
+[submodule "pi22-1/Nik"]
+	path = pi22-1/Nik
+	url = https://github.com/NikitinAnton/Nik
+[submodule "pi22-1/boch"]
+	path = pi22-1/boch
+	url = https://github.com/OlgaBochagina/boch
+[submodule "pi22-1/Pech"]
+	path = pi22-1/Pech
+	url = https://github.com/k1llRe4l/Pech
+[submodule "pi22-2/TRUN"]
+	path = pi22-2/TRUN
+	url = https://github.com/JuanTrunov/TRUN
+[submodule "pi22-2/Mash"]
+	path = pi22-2/Mash
+	url = https://github.com/10nesse/Mash
+[submodule "pi22-2/erm"]
+	path = pi22-2/erm
+	url = https://github.com/vladermik/erm
+[submodule "pi22-2/pavliuk"]
+	path = pi22-2/pavliuk
+	url = https://github.com/yeeeyoooduck/pavliuk
+[submodule "pi22-2/kly"]
+	path = pi22-2/kly
+	url = https://github.com/Gidr0n/kly
+[submodule "pi22-2/Chetyrkina"]
+	path = pi22-2/Chetyrkina
+	url = https://github.com/mariiachet/Chetyrkina
+[submodule "pi22-2/btd"]
+	path = pi22-2/btd
+	url = https://github.com/TanyaBabkina/btd
+[submodule "pi22-2/OAI"]
+	path = pi22-2/OAI
+	url = https://github.com/teenee0/OAI
+[submodule "pi22-2/Mor"]
+	path = pi22-2/Mor
+	url = https://github.com/Alyona544/Mor
+[submodule "pi22-2/Aki"]
+	path = pi22-2/Aki
+	url = https://github.com/Arsenoid/Aki.git
+[submodule "pi22-2/Git-ovchinnikovPA"]
+	path = pi22-2/Git-ovchinnikovPA
+	url = https://github.com/Kami1ot/Git-ovchinnikovPA
+[submodule "pi22-2/kuk"]
+	path = pi22-2/kuk
+	url = https://github.com/hukamobeta/kuk.git
+[submodule "pi22-2/DZY"]
+	path = pi22-2/DZY
+	url = https://github.com/osetter/DZY
+[submodule "pi22-2/SER"]
+	path = pi22-2/SER
+	url = https://github.com/NasNasNas7631/SER
+[submodule "pi22-2/Sam"]
+	path = pi22-2/Sam
+	url = https://github.com/GodWar101/Sam
+[submodule "pi22-2/Khva"]
+	path = pi22-2/Khva
+	url = https://github.com/Anastas15/Khva
+[submodule "pi22-2/proz"]
+	path = pi22-2/proz
+	url = https://github.com/Cpsuls/proz
+[submodule "0_git_basics"]
+	path = 0_git_basics
+	url = https://github.com/VladimirAndropov/0_git_basics
+[submodule "4_requests"]
+	path = 4_requests
+	url = https://github.com/VladimirAndropov/4_requests
+[submodule "5_FTP_server"]
+	path = 5_FTP_server
+	url = https://github.com/VladimirAndropov/5_FTP_server.git
