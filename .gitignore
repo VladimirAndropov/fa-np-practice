@@ -1,14 +1,14 @@
-.vscode/
-1.sh
-__pycache__/
-.idea/
-lsbaws/
-Lib/
-site-packages/
-*.exe
-*.bat
-bin/
-lib/
-venv/
-env/
-3_Parallelism_2022/
+# .vscode/
+# 1.sh
+# __pycache__/
+# .idea/
+# lsbaws/
+# Lib/
+# site-packages/
+# *.exe
+# *.bat
+# bin/
+# lib/
+# venv/
+# env/
+# 3_Parallelism_2022/
