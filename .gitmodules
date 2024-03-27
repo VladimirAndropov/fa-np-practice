@@ -1,0 +1,3 @@
+[submodule "7_TCP_server1"]
+	path = 7_TCP_server1
+	url = https://github.com/Adrenaline22/7_TCP_server1
