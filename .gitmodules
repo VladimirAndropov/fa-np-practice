@@ -235,3 +235,6 @@
 [submodule "Gri"]
 	path = Gri
 	url = https://github.com/IamHenryEvery/Gri
+[submodule "7_TCP_server"]
+	path = 7_TCP_server
+	url = https://github.com/IamHenryEvery/7_TCP_server.git
