@@ -235,3 +235,6 @@
 [submodule "Kos"]
 	path = Kos
 	url = https://github.com/Duoksi/Kos
+[submodule "7_TCP_server"]
+	path = 7_TCP_server
+	url = https://github.com/Duoksi/7_TCP_server
