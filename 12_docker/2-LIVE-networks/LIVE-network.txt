@@ -1,0 +1,34 @@
+сети:
+docker network ls
+docker network inspect bridge
+docker network rm docker_net
+
+compose:
+docker compose up
+docker compose up --force-recreate
+
+последовательность параметров, добавляемых в docker-compose (как было на LIVE):
+1. Не указываем сеть вообще (создается по дефолтну в сети bridge)
+2. Указываем после каждого контейнера:
+network_mode: none (поднимаются контейнеры без сети)
+3. добавляем запись после каждого контейнера:
+    networks:
+      - net
+В конце docker-compose файла указываем конфигурацию нашей сети:
+networks:
+  net:
+    driver: bridge
+Последняя строка с driver-ом обязательна. 
+Запускаем контейнеры (создается сеть docker_net)
+4. Добавляем в конце описания нашей сети конфигурацию:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.220.0/24  
+Но, в секции ipam Driver можно и не указывать. 
+Запускам контейнеры (IP-адреса у контейнеров не поменялись)
+5. Удаляем сеть docker_net командой:
+docker netwrok rm docker_net
+Перезапускаем контейнеры (контейнерам назначаются новые адреса, как в конфиге)
+         
+

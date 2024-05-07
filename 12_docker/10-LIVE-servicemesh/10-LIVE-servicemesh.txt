@@ -1,0 +1,58 @@
+1) Создайте собственный неймспейс для Istio
+kubectl create ns istio-system
+
+2) Проинсталируйте helm (https://helm.sh/docs/intro/install/)
+
+3) Добавьте репозиторий Istio в Helm
+helm repo add istio https://istio-release.storage.googleapis.com/charts
+
+4) Выполните апдейт репозиториев 
+helm repo update
+
+5) Проинсталируйте базовые компоненты сервисной сетки Istio с помощью HELM
+helm install istio-base istio/base -n istio-system
+helm install istiod istio/istiod -n istio-system --wait
+
+6) Проинсталируйте интегрированный в Istio дашборд Kiali через плагин
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.13/samples/addons/kiali.yaml
+
+7) Модифицируйте манифест проинсталированной службы Kiali
+kubectl edit svc kiali -n istio-system
+учимся модифицировать манифест: 
+ищем в спецификации 
+ type: ClusterIP
+и меняем его на
+ type: NodePort
+тем самым используя сеть хоста
+сохраняем изменения, получаем уведомление, что service/kiali edited
+
+7) Проинсталируйте интегрированный в Istio интегрированный инструмент по сбору метрик Prometheus через плагин
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.13/samples/addons/prometheus.yaml
+
+8) Применяем модицифирующий вебхук к неймспесу с инструментом Mobsf
+kubectl label namespace mobsf istio-injection=enabled
+получаем уведомление, что namespace/mobsf labeled
+
+9) Получаем информацию о поде с инструментом MobSF
+ kubectl get pods -n mobsf
+ 
+10) Удаляем под с MobSf
+ kubectl delete pod mobsf-5db69649fc-5nl7t -n mobsf
+(обратите внимание, что в вашем случае будет другое наименование пода, подставьте свое значения из вывода команды kubectl get pods -n mobsf)
+поскольку мы с вами создавали deployment для mobsf, удаление пода вызовет ее переразвертывание (но уже с примененным модифицирующим вебхуком от Istio)
+вызовите снова команду 
+ kubectl get pods -n mobsf
+и обратите внимание на вывод, в графе READY вы теперь видите "2/2", это означает, что в поде теперь находятся 2 контейнера - один это контейнер с mobsf, второй - это sidecar который внедрился Istio. Sidecar - это контейнер с прокси-сервером Envoy, который будет сообщать Istio о всех действиях контейнера)
+
+11) Выполните команду и определите, по какому порту запущен дашборд kiali
+ kubectl get svc -n istio-system
+Перейдите по адресу хоста, подставив обнаруженный порт службы kiali. Откроется интерфейс дашборда.
+
+Отерыв интерфейс дашборда kiali, перейдите в раздел "Graph", выберите namespace Mobsf в выпадающем списке "Select namespaces"
+
+Во временном фильтре в правой верхней части экрана установите вместо "Last 1m" значение "Last 1d"
+
+Перейдите в интерфейс MobSF и выполните имитацию полезной нагрузки (попереключайтесь между вкладками RECENT SCANS и главной страницей несколько раз)
+
+Перейдите обратно в kiali и немного подождите, вы получите визуализацию активности внутри построенной вами сервисной сетки (см. приложенный скриншот "service-mesh-in-action.jpg"
+

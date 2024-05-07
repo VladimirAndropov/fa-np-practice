@@ -1,0 +1,18 @@
+1) Создайте неймспейс для инструмента MobSF
+kubectl create ns mobsf
+
+2) Создайте deployment Mobsf
+kubectl create deployment mobsf --image=opensecurity/mobile-security-framework-mobsf:v3.1.1 -n mobsf
+(деплоймент позволяет отслеживать количество подов и сервисов, выполнять их обновление и модификацию)
+
+3) Создайте службу для пода MobSF
+kubectl expose deployment mobsf --port=8000 --type=NodePort -n mobsf
+
+4) Если вы используете инегрсс-контроллер для обработки входящих соединений в кластере, узнайте его external-ip 
+kubectl get svc -n kube-system
+
+5) Узнайте, какой порт на хосте был выделен службы MobSF
+kubectl get svc -n mobsf
+
+6) Используя браузер, перейдите по адресу (ip:port) и откройте веб-интерфейс MobSF
+http://172.26.0.3:31278

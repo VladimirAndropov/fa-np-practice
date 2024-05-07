@@ -1,0 +1,7 @@
+
+docker build . -t hwi
+docker run hwi
+docker network inspect bridge (ip + 8080 port)
+
+docker build --target builder . -t hwi-intermediate
+docker build . -t hwi

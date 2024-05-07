@@ -1,0 +1,15 @@
+k3d cluster create filipp
+kubectl run mariadb --image=mariadb --port 3306 --env MARIADB_ROOT_PASSWORD=superpass
+kubectl run adminer --image=adminer
+
+kubectl expose pod mariadb
+kubectl expose pod adminer --port 8080 --type=NodePort
+
+kubectl get svc traefik -n kube-system -o yaml
+
+----
+kubectl delete pods mariadb adminer
+kubectl delete svc mariadb adminer
+
+
+!читай подробное описание функций в файлике про миникуб

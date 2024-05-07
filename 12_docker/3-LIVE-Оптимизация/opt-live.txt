@@ -1,0 +1,14 @@
+
+docker build . -f Dockerfile-python -t docker-python
+docker images --format "{{.Repository}}: {{.Size}}"
+docker image inspect docker-python
+
+docker build . -f Dockerfile-python-alpine -t python-alpine
+docker images --format "{{.Repository}}: {{.Size}}"
+docker image inspect python-alpine
+
+docker build . -f Dockerfile-python-alpine-opt -t python-alpine-opt
+docker images --format "{{.Repository}}: {{.Size}}"
+docker image inspect python-alpine-opt
+
+docker history python-alpine

@@ -1,0 +1,36 @@
+windows:
+
+cd C:\Users\ignat\Desktop\etcd\etcd-v3.5.1-windows-amd64
+etcd.exe --name=first
+
+etcdctl.exe member list
+
+etcdctl.exe snapshot save first.bak
+
+ectd.exe --name second
+
+etcdctl.exe snapshot restore first.bak --data-dir=first
+
+etcd.exe --data-dir=first
+
+---
+
+linux:
+
+apt install etcd
+
+etcd --name=first
+
+etcdctl member list -w table (2nd console)
+
+export ETCDCTL_API=3
+
+etcdctl snapshot save first.bak
+
+systemctl stop etcd
+
+etcdctl snapshot restore first.bak --data-dir=second.etcd
+
+rm -rf first.etcd/
+
+etcd --data-dir=second.etcd --name=second
