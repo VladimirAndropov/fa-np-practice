@@ -94,7 +94,7 @@
 [submodule "Miro_server"]
 	path = Miro_server
 	url = https://github.com/mirrrler/Miro_server
-=======
+
 [submodule "pi22-3/Kol"]
 	path = pi22-3/Kol
 	url = https://github.com/KolchevaAngelina/Kol
@@ -380,9 +380,3 @@
 [submodule "pi22-1/Musikhina-fa-np-practice"]
 	path = pi22-1/Musikhina-fa-np-practice
 	url = https://github.com/sonyashk/Musikhina-fa-np-practice
-<<<<<<< HEAD
-=======
-[submodule "Pech"]
-	path = Pech
-	url = https://github.com/k1llRe4l/Pech
->>>>>>> 5557340722bcc4ce1bdf45e917dc6e13ec099916
