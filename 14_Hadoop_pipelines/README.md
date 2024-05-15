@@ -1,4 +1,11 @@
-     
+export HADOOP_HOME="/home/student/hadoop-2.10.2"
+export PATH=$PATH:$HADOOP_HOME/bin
+export PATH=$PATH:$HADOOP_HOME/sbin
+export HADOOP_MAPRED_HOME=${HADOOP_HOME}
+export HADOOP_COMMON_HOME=${HADOOP_HOME}
+export HADOOP_HDFS_HOME=${HADOOP_HOME}
+export YARN_HOME=${HADOOP_HOME}
+
 # Что такое machine learning pipeline?
 
 конвеер машинного обучения - это серия взаимосвязанных этапов обработки данных и моделирования, предназначенных для автоматизации, стандартизации и упрощения процесса создания, обучения, оценки и развертывания моделей машинного обучения.
