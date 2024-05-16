@@ -1,13 +1,62 @@
-https://hadoop.apache.org/release/2.10.2.html
+# Методичка
+
+## Установить hadoop
+
+Скачать архив, разархивировать под тем пользователем с которого скачали
+https://drive.google.com/file/d/1YgSxm63cGnohwv-J3KdDBGZPzLTFOdaS/view?usp=sharing
+
+Зайти под рутом
+        
+        sudo su
+
+Переместить рахархивированную папку edx в корень /
+
+
+Опять переключиться в пользователя и найти в домашней папке .bashrc
+
+Добавить в .bashrc (добавлять под rootом)
 
 ```
-export HADOOP_HOME="/home/student/hadoop-2.10.2"
+
+. /edx/app/hadoop/hadoop/hadoop_env
+export HADOOP_HOME="/edx/app/hadoop/hadoop"
 export PATH=$PATH:$HADOOP_HOME/bin
 export PATH=$PATH:$HADOOP_HOME/sbin
 export HADOOP_MAPRED_HOME=${HADOOP_HOME}
 export HADOOP_COMMON_HOME=${HADOOP_HOME}
 export HADOOP_HDFS_HOME=${HADOOP_HOME}
 export YARN_HOME=${HADOOP_HOME}
+export SCALA_HOME=/edx/app/hadoop/scala
+export SPARK_HOME=/edx/app/hadoop/spark
+export PATH=$SPARK_HOME/bin:$JAVA_HOME/bin:$SCALA_HOME/bin:$PATH
+export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.7-src.zip:$PYTHONPATH
+
+```
+
+## Команды
+
+```
+cd /edx/app/hadoop/hadoop
+
+sbin/start-dfs.sh
+
+sbin/start-yarn.sh
+
+jps
+
+bin/hadoop fs -ls /
+
+bin/hadoop fs -ls /data
+
+bin/hadoop fs -ls /output/
+
+bin/yarn jar '/edx/app/hadoop/hadoop-2.7.2/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar' wordcount  /data/tracking.log  /output/tracking.log
+
+bin/hadoop fs -ls /output/tracking.log/
+
+bin/hadoop fs -cat /output/tracking.log/part-r-00000
+
+
 ```
 
 # Что такое machine learning pipeline?
