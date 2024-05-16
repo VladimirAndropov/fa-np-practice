@@ -5,12 +5,16 @@
 Скачать архив, разархивировать под тем пользователем с которого скачали
 https://drive.google.com/file/d/1YgSxm63cGnohwv-J3KdDBGZPzLTFOdaS/view?usp=sharing
 
+
 Зайти под рутом
         
         sudo su
 
 Переместить рахархивированную папку edx в корень /
 
+установить Java-8-oracle как основной
+
+    sudo update-alternatives --config java
 
 Опять переключиться в пользователя и найти в домашней папке .bashrc
 
@@ -44,6 +48,119 @@ sbin/start-yarn.sh
 
 jps
 
+```
+
+
+Примеры MapReduce
+-----------------
+
+Примеры расположены в кластере HDInsight в `/edx/app/hadoop/hadoop-2.7.2/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar`. Исходный код этих примеров расположен в кластере HDInsight в `/usr/hdp/current/hadoop-client/src/hadoop-mapreduce-project/hadoop-mapreduce-examples`.
+
+В архиве содержатся следующие примеры:
+
+<table aria-label="Таблица 1" class="table table-sm margin-top-none">
+<thead>
+<tr>
+<th>Образец</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>aggregatewordcount</td>
+<td>Подсчитывает количество слов во входных файлах.</td>
+</tr>
+<tr>
+<td>aggregatewordhist</td>
+<td>Создает гистограмму слов во входных файлах.</td>
+</tr>
+<tr>
+<td><code>bbp</code></td>
+<td>Использует формулу Бэйли-Боруэйна-Плаффа для вычисления знаков числа&nbsp;π.</td>
+</tr>
+<tr>
+<td>dbcount</td>
+<td>Подсчитывает журналы просмотра страниц, сохраненных в базе данных.</td>
+</tr>
+<tr>
+<td>distbbp</td>
+<td>Использует формулу ББП для вычисления знаков числа&nbsp;π.</td>
+</tr>
+<tr>
+<td>grep</td>
+<td>Подсчитывает совпадения регулярного выражения с входными данными.</td>
+</tr>
+<tr>
+<td>join</td>
+<td>Выполняет объединение сортированных наборов данных одного размера.</td>
+</tr>
+<tr>
+<td>multifilewc</td>
+<td>Подсчитывает слова в нескольких файлах.</td>
+</tr>
+<tr>
+<td>pentomino</td>
+<td>Программа для укладки фигур с целью поиска решений при игре в пентамино.</td>
+</tr>
+<tr>
+<td>pi</td>
+<td>Оценивает число&nbsp;π по методу квази-Монте-Карло.</td>
+</tr>
+<tr>
+<td>randomtextwriter</td>
+<td>Записывает 10 ГБ случайных текстовых данных на узел.</td>
+</tr>
+<tr>
+<td><code>randomwriter</code></td>
+<td>Записывает 10 ГБ случайных данных на узел.</td>
+</tr>
+<tr>
+<td><code>secondarysort</code></td>
+<td>Определяет вторичную сортировку для этапа редукции.</td>
+</tr>
+<tr>
+<td>sort</td>
+<td>Сортирует данные, записанные случайным образом.</td>
+</tr>
+<tr>
+<td>sudoku</td>
+<td>программа решения судоку.</td>
+</tr>
+<tr>
+<td>teragen</td>
+<td>создание данных для программы TeraSort.</td>
+</tr>
+<tr>
+<td>terasort</td>
+<td>выполнение программы TeraSort.</td>
+</tr>
+<tr>
+<td>teravalidate</td>
+<td>проверка результатов выполнения программы TeraSort.</td>
+</tr>
+<tr>
+<td>wordcount</td>
+<td>Подсчитывает количество слов во входных файлах.</td>
+</tr>
+<tr>
+<td><code>wordmean</code></td>
+<td>Подсчитывает среднюю длину слов во входных файлах.</td>
+</tr>
+<tr>
+<td><code>wordmedian</code></td>
+<td>Подсчитывает медианную длину слов во входных файлах.</td>
+</tr>
+<tr>
+<td>wordstandarddeviation</td>
+<td>Подсчитывает стандартное отклонение в длинах слов во входных файлах.</td>
+</tr>
+</tbody>
+</table>
+
+Запуск примера для подсчета слов
+--------------------------------
+шпаргалка
+```
 bin/hadoop fs -ls /
 
 bin/hadoop fs -ls /data
@@ -55,8 +172,208 @@ bin/yarn jar '/edx/app/hadoop/hadoop-2.7.2/share/hadoop/mapreduce/hadoop-mapredu
 bin/hadoop fs -ls /output/tracking.log/
 
 bin/hadoop fs -cat /output/tracking.log/part-r-00000
+```
 
 
+1.  Подключитесь к HDInsight с помощью протокола SSH. Замените `CLUSTER` именем кластера и введите следующую команду:
+    
+        ssh [email protected]
+        
+    
+2.  В сеансе SSH используйте следующую команду, чтобы вывести список примеров:
+    
+        yarn jar '/edx/app/hadoop/hadoop-2.7.2/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar'
+        
+    
+    Эта команда создает список примеров из предыдущего раздела данного документа.
+    
+3.  Чтобы получить справку по конкретному примеру, используйте следующую команду: В данном случае запускается пример **wordcount**.
+    
+         yarn jar '/edx/app/hadoop/hadoop-2.7.2/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar' wordcount
+        
+    
+    Отобразится следующее сообщение.
+    
+        Usage: wordcount <in> [<in>...] <out>
+        
+    
+    Это сообщение означает, что можно указать несколько входных путей для исходных документов. Окончательный путь — это место, где сохраняются выходные данные (число слов в исходных документах).
+    
+4.  Для подсчета всех слов в книге "Записи Леонардо да Винчи", которая поставляется с кластером и служит примером исходных данных, используйте следующую команду:
+    ```
+    hdfs dfs -put /edx/app/hadoop/hadoop/davinci.txt /data/davinci.txt
+
+    yarn jar '/edx/app/hadoop/hadoop-2.7.2/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar' wordcount /data/davinci.txt /output/davinci
+    ```
+    
+        
+    
+    Для этого задания считываются входные данные из файла `/example/data/gutenberg/davinci.txt`. Выходные данные для этого примера сохраняются в `/example/data/davinciwordcount`. Оба пути расположены в хранилище по умолчанию для кластера, а не в локальной файловой системе.
+    
+    Примечание
+    
+    Как сказано в справке по примеру wordcount, вы также можете указать несколько входных файлов. Например, команда `hadoop  jar '/edx/app/hadoop/hadoop-2.7.2/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar' wordcount /example/data/gutenberg/davinci.txt /example/data/gutenberg/ulysses.txt /example/data/twowordcount` позволит подсчитать слова в файлах davinci.txt и ulysses.txt.
+    
+5.  По завершении задания воспользуйтесь следующей командой, чтобы просмотреть результат:
+    
+        hdfs dfs -cat /example/data/davinciwordcount/*
+        
+    
+    Эта команда сцепляет все выходные файлы, созданные заданием. Она отображает выходные данные в консоли. Результат будет аналогичен приведенному ниже:
+    
+        zum     1
+        zur     1
+        zwanzig 1
+        zweite  1
+        
+    
+    Каждая строка соответствует одному слову и частоте его появления в исходных данных.
+    
+
+Пример судоку
+-------------
+
+[Судоку](https://en.wikipedia.org/wiki/Sudoku) — это логическая головоломка, которая состоит из девяти полей размером 3 x 3 клетки. Некоторые ячейки в клетках содержат числа, остальные ячейки пустые. Задача заключается в поиске чисел для пустых ячеек. С помощью указанной выше ссылки можно получить дополнительные сведения о головоломке, однако целью этого примера является поиск значений для пустых ячеек. Таким образом, на входе программы должен быть файл в следующем формате.
+
+*   Девять строк и девять столбцов
+*   Каждый столбец может содержать число или знак `?` (означает пустую ячейку).
+*   Ячейки разделяются пробелами
+
+
+
+
+Следующая задача — составление головоломки судоку, по правилам которой не допускается использование одного и того же числа в строке или столбце. Ниже приведен пример правильно созданного кластера HDInsight. Он находится в `https://github.com/naver/hadoop/blob/master/hadoop-mapreduce-project/hadoop-mapreduce-examples/src/main/java/org/apache/hadoop/examples/dancing/puzzle1.dta` и содержит приведенный ниже текст.
+
+    8 5 ? 3 9 ? ? ? ?
+    ? ? 2 ? ? ? ? ? ?
+    ? ? 6 ? 1 ? ? ? 2
+    ? ? 4 ? ? 3 ? 5 9
+    ? ? 8 9 ? 1 4 ? ?
+    3 2 ? 4 ? ? 8 ? ?
+    9 ? ? ? 8 ? 5 ? ?
+    ? ? ? ? ? ? 2 ? ?
+    ? ? ? ? 4 5 ? 7 8
+    
+```
+vladimir@server3:/edx/app/hadoop/hadoop$ hdfs dfs -put /edx/app/hadoop/hadoop/puzzle1.dta /data/puzzle1.dta
+
+vladimir@server3:/edx/app/hadoop/hadoop$ bin/hadoop fs -ls /data
+```
+
+Чтобы обработать эти данные в примере судоку, используйте следующую команду.
+
+    bin/yarn jar '/edx/app/hadoop/hadoop-2.7.2/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar' sudoku /data/puzzle1.dta
+
+    
+
+Полученный текст должен выглядеть следующим образом.
+
+    8 5 1 3 9 2 6 4 7
+    4 3 2 6 7 8 1 9 5
+    7 9 6 5 1 4 3 8 2
+    6 1 4 8 2 3 7 5 9
+    5 7 8 9 6 1 4 2 3
+    3 2 9 4 5 7 8 1 6
+    9 4 7 2 8 6 5 3 1
+    1 8 5 7 3 9 2 6 4
+    2 6 3 1 4 5 9 7 8
+    
+
+Пример "Пи" (π)
+---------------
+
+В примере «Пи» используется статистический метод (квази-Монте-Карло) оценки значения числа пи. Точки в произвольном порядке помещаются внутри единичного квадрата. В квадрат также вписан круг. Вероятность того, что точки находятся в круге, равна площади круга, π/4. Значение pi можно оценить на основе значения `4R`. R — это отношение количества точек, находящихся внутри круга, к общему количеству точек, находящихся внутри квадрата. Чем больше выборка используемых точек, тем точнее оценка.
+
+Для запуска примера используйте следующую команду. Для оценки числа π в команде используется 16 карт с 10 000 000 примерами в каждой.
+
+    bin/yarn jar '/edx/app/hadoop/hadoop-2.7.2/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar' pi 16 10000000
+
+    
+
+Команда должна возвращать значение наподобие **3,14159155000000000000**. Для справки, первые 10 знаков числа пи: 3,1415926535.
+
+Пример GraySort размером 10 ГБ
+------------------------------
+
+GraySort — это измерение производительности сортировки. Его показателем служит скорость (ТБ/мин), достигаемая при сортировке очень больших объемов данных, обычно не менее 100 ТБ.
+
+В этом примере используется небольшой объем данных, 10 ГБ, чтобы можно было выполнить сортировку достаточно быстро. В ней используются приложения MapReduce, разработанные `Owen O'Malley` и `Arun Murthy`. Эти приложения победили в 2009 году на конкурсе приложений сортировки общего назначения (Daytona) для больших объемов данных, показав скорость 0,578 ТБ/мин (100 ТБ за 173 минуты). Дополнительные сведения об этом и других измерениях производительности сортировки см. на веб-сайте [Sort Benchmark](https://sortbenchmark.org/).
+
+В этом примере используются три набора программ MapReduce.
+
+*   **TeraGen**: программа MapReduce, которая создает строки с данными для последующей сортировки.
+    
+*   **TeraSort**: производит выборку входных данных и использует MapReduce для сортировки данных в общем порядке.
+    
+    TeraSort представляет собой стандартную сортировку MapReduce, за исключением настраиваемого разделителя. В разделителе используется отсортированный список выборки ключей N-1, определяющий диапазон ключей для каждой функции reduce. В частности, все ключи, подобные этому примеру \[i-1\] <= key < sample\[i\] отправляются для сокращения i. Этот разделитель гарантирует, что выходные данные reduce `i` будут меньше, чем выходные данные reduce `i+1`.
+    
+*   **TeraValidate**: программа MapReduce, которая проверяет глобальную сортировку выходных данных.
+    
+    В выходном каталоге создается одна функция map для каждого файла, и каждая функция map гарантирует, что каждый ключ будет меньше или равен предыдущему. Функция map создает записи первого и последнего ключей каждого файла. Функция reduce гарантирует, что первый ключ файла i больше последнего ключа файла i-1. Все проблемы указываются в выходных данных этапа редукции вместе с неотсортированными ключами.
+    
+
+Для создания данных, сортировки и проверки выходных данных используйте следующую команду:
+
+1.  Создайте 10 ГБ данных, которые сохранятся в хранилище по умолчанию кластера HDInsight в `/example/data/10GB-sort-input`.
+    
+        yarn jar edx/app/hadoop/hadoop-2.7.2/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar teragen -Dmapred.map.tasks=50 100000000 /example/data/10GB-sort-input
+        
+    
+    Ключ `-Dmapred.map.tasks` говорит Hadoop о том, сколько задач сопоставления будет использоваться в этом задании. Последние два параметра означают, что задание создаст 10 ГБ данных и сохранит их в `/example/data/10GB-sort-input`.
+    
+2.  Выполните следующую команду, чтобы отсортировать данные:
+    
+        yarn jar edx/app/hadoop/hadoop-2.7.2/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar terasort -Dmapred.map.tasks=50 -Dmapred.reduce.tasks=25 /example/data/10GB-sort-input /example/data/10GB-sort-output
+        
+    
+    Ключ `-Dmapred.reduce.tasks` говорит Hadoop о том, сколько задач сокращения будет использоваться в этом задании. Последние два параметра соответствуют путям расположения входных и выходных данных.
+    
+3.  Используйте следующую команду, чтобы просмотреть отсортированные данные:
+    
+        yarn jar edx/app/hadoop/hadoop-2.7.2/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar teravalidate -Dmapred.map.tasks=50 -Dmapred.reduce.tasks=25 /example/data/10GB-sort-output /example/data/10GB-sort-validate
+        
+    
+____
+
+
+# Spark
+
+установим python2.7
+
+```
+wget https://www.python.org/ftp/python/2.7.9/Python-2.7.9.tgz
+sudo tar xzf Python-2.7.9.tgz
+cd Python-2.7.9
+sudo ./configure --enable-optimizations
+sudo make altinstall
+```
+Сделаем по-умолчанию главным python 2.7
+
+```
+sudo ln -sfn '/usr/local/bin/python2.7' '/usr/bin/python2'
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 1
+```
+
+Запустим spark
+
+```
+cd /edx/app/hadoop/
+cd spark
+
+sbin/start-all.sh
+
+jps
+```
+
+
+Запустим те же примеры, что были выше
+
+```
+hdfs dfs -mkdir /log
+
+bin/spark-submit --master local /edx/app/hadoop/spark/examples/src/main/python/pi.py
+
+bin/spark-submit --master local /edx/app/hadoop/spark/examples/src/main/python/wordcount.py /data/tracking.log
 ```
 
 # Что такое machine learning pipeline?
