@@ -2,26 +2,29 @@
 
 ## Установить hadoop
 
-Скачать архив, разархивировать под тем пользователем с которого скачали
-https://drive.google.com/file/d/1YgSxm63cGnohwv-J3KdDBGZPzLTFOdaS/view?usp=sharing
+Скачать архив, разархивировать под тем пользователем с которого скачали Зайти под рутом и Переместить рахархивированную папку edx в корень /
+Выполнить команду, чтобы добавить в .bashrc
+переменные окружения
 
-
-Зайти под рутом
-        
-        sudo su
-
-Переместить рахархивированную папку edx в корень /
-
-установить Java-8-oracle как основной
-
-    sudo update-alternatives --config java
-
-Опять переключиться в пользователя и найти в домашней папке .bashrc
-
-Добавить в .bashrc (добавлять под rootом)
+То есть выполнить следующее в терминале
 
 ```
+cd $HOME
 
+wget -nc https://drive.google.com/file/d/1YgSxm63cGnohwv-J3KdDBGZPzLTFOdaS/view?usp=sharing
+
+tar zxvf edx.tar.gz
+
+sudo mv edx /
+
+sudo hostname server3
+
+sudo bash -c "cat >> /etc/hosts" <<EOF
+0.0.0.0		server3
+127.0.0.1	server3
+EOF
+
+sudo bash -c "cat >> $HOME/.bashrc" <<EOF
 . /edx/app/hadoop/hadoop/hadoop_env
 export HADOOP_HOME="/edx/app/hadoop/hadoop"
 export PATH=$PATH:$HADOOP_HOME/bin
@@ -34,8 +37,23 @@ export SCALA_HOME=/edx/app/hadoop/scala
 export SPARK_HOME=/edx/app/hadoop/spark
 export PATH=$SPARK_HOME/bin:$JAVA_HOME/bin:$SCALA_HOME/bin:$PATH
 export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.7-src.zip:$PYTHONPATH
+EOF
 
 ```
+Установить пакеты
+```
+sudo apt install openssh-client openssh-server openjdk-8-jre openjdk-8-jre-headless python2
+
+sudo ln -s /usr/lib/jvm/java-8-openjdk-amd64 /usr/lib/jvm/java-8-oracle
+
+```
+
+
+установить Java-8-oracle как основной
+
+    sudo update-alternatives --config java
+
+Установка завершена. **Закройте терминал!!!**
 
 ## Команды
 
