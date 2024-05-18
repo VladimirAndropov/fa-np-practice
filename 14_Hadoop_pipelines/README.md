@@ -17,11 +17,11 @@ tar zxvf edx.tar.gz
 
 sudo mv edx /
 
-sudo hostname server3
+sudo hostnamectl set-hostname server3
 
 sudo bash -c "cat >> /etc/hosts" <<EOF
-0.0.0.0		server3
-127.0.0.1	server3
+0.0.0.0		    server3
+127.0.0.1	    server3
 EOF
 
 sudo bash -c "cat >> $HOME/.bashrc" <<EOF
@@ -38,13 +38,14 @@ export SPARK_HOME=/edx/app/hadoop/spark
 export PATH=$SPARK_HOME/bin:$JAVA_HOME/bin:$SCALA_HOME/bin:$PATH
 export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.7-src.zip:$PYTHONPATH
 EOF
-
 ```
 Установить пакеты
 ```
-sudo apt install openssh-client openssh-server openjdk-8-jre openjdk-8-jre-headless python2
+sudo apt-get update
 
-sudo ln -s /usr/lib/jvm/java-8-openjdk-amd64 /usr/lib/jvm/java-8-oracle
+sudo apt install openssh-client openssh-server openjdk-8-jre openjdk-8-jre-headless python2 python-is-python2 openjdk-8-jdk-headless
+
+sudo ln -s /usr/lib/jvm/java-8-openjdk-amd64 /usr/lib/jvm/java-8-oracle 
 
 ```
 
@@ -55,7 +56,7 @@ sudo ln -s /usr/lib/jvm/java-8-openjdk-amd64 /usr/lib/jvm/java-8-oracle
 
 Установка завершена. **Закройте терминал!!!**
 
-## Команды
+## Команды YARN
 
 ```
 cd /edx/app/hadoop/hadoop
@@ -67,6 +68,11 @@ sbin/start-yarn.sh
 jps
 
 ```
+
+Если ранее ошиблись, то будет баг с ssh, устраняем так
+
+    ssh-keygen -f "/home/vladimir/.ssh/known_hosts" -R "0.0.0.0"
+    ssh-keygen -f "/home/vladimir/.ssh/known_hosts" -R "server3"
 
 
 Примеры MapReduce
@@ -356,27 +362,12 @@ ____
 
 # Spark
 
-установим python2.7
 
-```
-wget https://www.python.org/ftp/python/2.7.9/Python-2.7.9.tgz
-sudo tar xzf Python-2.7.9.tgz
-cd Python-2.7.9
-sudo ./configure --enable-optimizations
-sudo make altinstall
-```
-Сделаем по-умолчанию главным python 2.7
-
-```
-sudo ln -sfn '/usr/local/bin/python2.7' '/usr/bin/python2'
-sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 1
-```
 
 Запустим spark
 
 ```
-cd /edx/app/hadoop/
-cd spark
+cd /edx/app/hadoop/spark
 
 sbin/start-all.sh
 
@@ -384,7 +375,7 @@ jps
 ```
 
 
-Запустим те же примеры, что были выше
+Запустим те же примеры, что были выше но используя Python
 
 ```
 hdfs dfs -mkdir /log
