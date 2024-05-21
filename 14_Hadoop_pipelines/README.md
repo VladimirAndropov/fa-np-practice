@@ -385,65 +385,629 @@ bin/spark-submit --master local /edx/app/hadoop/spark/examples/src/main/python/p
 bin/spark-submit --master local /edx/app/hadoop/spark/examples/src/main/python/wordcount.py /data/tracking.log
 ```
 
+
+
+# Luigi pipelines
+
+
+[repo](https://github.com/VladimirAndropov/repo)
+
 # Что такое machine learning pipeline?
 
 конвеер машинного обучения - это серия взаимосвязанных этапов обработки данных и моделирования, предназначенных для автоматизации, стандартизации и упрощения процесса создания, обучения, оценки и развертывания моделей машинного обучения.
 
-конвеер машинного обучения является важным компонентом в разработке и производстве систем [машинного обучения] (https://www.ibm.com/topics/machine-learning), помогая [ученым-ученым] (https://www.ibm.com/Themics/Data Science) и инженеры по данным управляют сложностью процесса сквозного машинного обучения и помогают им разработать точные и масштабируемые решения для широкого спектра приложений.
+конвеер машинного обучения является важным компонентом в разработке и производстве систем [машинного обучения](https://www.ibm.com/topics/machine-learning), помогая [ученым-ученым](https://www.ibm.com/Themics/DataScience) и инженеры по данным управляют сложностью процесса сквозного машинного обучения и помогают им разработать точные и масштабируемые решения для широкого спектра приложений.
+
+----
+
+## Run pipeline
+```
+cd /edx/app/hadoop
+
+git clone https://github.com/VladimirAndropov/repo
+
+cd repo
 
 
 
-## Machine learning pipelines  много преимуществ.
+```
+## HACK: make ansible do this
+```
 
-* **Модуляризация**: конвееры позволяют вам разбить процесс машинного обучения на модульные, четко определенные шаги.Каждый шаг может быть разработан, протестирован и оптимизирован независимо, что облегчает управление и поддержание [Рабочий процесс](https://www.ibm.com/topics/workflow). 
-     
-    
-* **Воспроизводимость**: конвееры машинного обучения облегчают воспроизведение экспериментов.Определяя последовательность этапов и их параметры в конвеере, вы можете точно воссоздать весь процесс, обеспечивая последовательные результаты.Если шаг не работает или производительность модели ухудшается, конвеер может быть настроен для повышения оповещений или принятия корректирующих действий.
-    
-    
-* **Эффективность**: Pipelines [Automate](https://www.ibm.com/topics/automation)-Лабелинг), Инженерная инженерия и [модель](https://www.ibm.com/topics/data-modeling) Оценка.Эта эффективность может сэкономить значительное количество времени и снизить риск ошибок.
-    
-    
-* **Масштабируемость**: конвееры могут быть легко масштабированы для обработки больших наборов данных или сложных рабочих процессов.По мере роста растущей сложности данных и моделей вы можете настроить конвеер, не перенастроил все с нуля, что может быть трудоемким.
-     
-    
-* **Эксперименты**: Вы можете экспериментировать с различными методами предварительной обработки данных, выбором объектов и моделями путем изменения отдельных шагов в конвеере.Эта гибкость обеспечивает быструю итерацию и оптимизацию.
-    
-    
-* **Развертывание**: конвееры облегчают [развертывание] (https://www.ibm.com/topics/continoury-deployment) моделей машинного обучения в производство.После того, как вы установили четко определенный конвейер для обучения и оценки моделей, вы можете легко [интегрировать] (https://www.ibm.com/topics/data-integration) в вашем приложении или системе.
-    
-    
-* **Сотрудничество**: конвееры облегчают сотрудничество команд и инженеров данных.Поскольку рабочий процесс структурирован и документирован, членам команды легче понять и внести свой вклад в проект.
-     
-    
-* **Управление и документацию версий**: Вы можете использовать системы управления версиями для отслеживания изменений в коде и конфигурации вашего конвеера, гарантируя, что вы сможете вернуться в предыдущие версии, если это необходимо.Хорошо структурированный конвеер поощряет лучшую документацию каждого шага.
-    
-## Стадии машинного обучения конвеера
+sudo apt-get install python3-virtualenv libffi-dev python2-dbg python2-dev python2.7-dbg python2.7-dev
 
-Технология машинного обучения продвигается быстро, но мы можем определить некоторые широкие шаги, связанные с процессом создания и развертывания машинного обучения и моделей глубокого обучения.
+virtualenv --python=/usr/bin/python2.7 pipeline
 
-1. **Сбор данных**: На этом начальном этапе новые данные собираются из различных источников данных, таких как базы данных, [API](https://www.ibm.com/topics/api) или файлы.Это употребление данных часто включает в себя необработанные данные, которые могут потребовать предварительной обработки, чтобы быть полезной.
-    
-    
-2. **Предварительная обработка данных**: Этот этап включает в себя очистку, преобразование и подготовку входных данных для моделирования.Общие этапы предварительной обработки включают обработку пропущенных значений, категориальные переменные кодирования, масштабирование численных функций и разделение данных на наборы обучения и тестирования.
-     
-    
-3. **Функциональная инженерия**: [Feature Engineering](https://www.ibm.com/topics/feature-engineering)-это процесс создания новых функций или выбора соответствующих функций из данных, которые могут улучшить прогнозирование моделивласть.Этот шаг часто требует знания и творчества.
-    
-    
-4. **Выбор модели**: На этом этапе вы выбираете соответствующий алгоритм (ы) машинного обучения на основе типа проблемы (например, классификация, регрессия), характеристики данных и требования к производительности.Вы также можете рассмотреть настройку гиперпараметра.
-    
-    
-5. **Обучение модели**: Выбранная [модель (s)](https://www.ibm.com/topics/ai-model) обучаются на наборе учебных данных с использованием выбранного алгоритма (ы).Это включает в себя изучение основных моделей и отношений в рамках учебных данных.Предварительно обученные модели также могут быть использованы, а не обучение новой модели.
-    
-    
-6. **Оценка модели**: После обучения производительность модели оценивается с использованием отдельного набора данных тестирования или посредством перекрестной проверки.Общие показатели оценки зависят от конкретной проблемы, но могут включать точность, точность, отзыв, F1-показатель, среднюю квадратную ошибку или другие. 
-     
-    
-7. **Развертывание модели**: После того, как будет разработана и оценивается удовлетворительная модель, его можно развернуть в производственной среде, где она может сделать прогнозы на новые, невидимые данные.Развертывание может включать создание API и интеграцию с другими системами.
-    
-    
-8. **Мониторинг и обслуживание**: После развертывания важно непрерывно отслеживать производительность модели и перепродать ее по мере необходимости для адаптации к изменению шаблонов данных.Этот шаг гарантирует, что модель остается точной и надежной в реальном мире.
-    
+source pipeline/bin/activate
 
-Машинное обучение [жизненные циклы](https://www.ibm.com/topics/data-lifecycle-Management) может варьироваться в зависимости от сложности и может включать дополнительные шаги в зависимости от случая использования, таких как оптимизация гиперпараметрии, перекрестная проверка и функциявыбор.Целью машинного обучения является автоматизация и стандартизация этих процессов, что облегчает разработку и поддержание моделей ML для различных приложений.
+python -m pip install --upgrade pip
+
+python -m  pip install -r requirements/base.txt
+
+python -m pip install -r requirements/default.txt
+
+
+luigid
+```
+откройте страницу по адресу
+http://server3:8082/
+
+```
+
+launch-task ModuleEngagementWorkflowTask \
+--date $(date +%Y-%m-%d -d "2021-12-12") \
+--indexing-tasks 5 \
+--throttle 0.5 \
+--n-reduce-tasks 1
+--local-scheduler
+
+launch-task ImportEnrollmentsIntoMysql --local-scheduler \
+  --interval 2018-01-01-2018-12-12 \
+  --n-reduce-tasks 1 \
+  --overwrite-mysql \
+  --overwrite-hive  --overwrite-n-days 365
+
+
+ launch-task UserActivityTask --local-scheduler   --interval 2015-01-01-2024-01-01   --n-reduce-tasks 1
+```
+
+# Examples
+```
+remote-task --host localhost --repo https://github.com/edx/edx-analytics-pipeline --user ubuntu --override-config $HOME/edx-analytics-pipeline/config/devstack.cfg --wheel-url http://edx-wheelhouse.s3-website-us-east-1.amazonaws.com/Ubuntu/precise --remote-name analyticstack --wait TotalEventsDailyTask --interval 2016 --output-root hdfs://localhost:9000/output/ --local-scheduler
+```
+If you got this far without error, you should try running the real pipeline tasks listed/linked below
+
+Tasks to Run to Update Insights
+General Notes
+
+    These tasks are intended to be kicked off by some scheduler (Jenkins, cron etc)
+    You can use a script to automatically deploy a cluster on EMR, run the task and then shut it down. Here is an example: run-automated-task.sh.
+    Tweak NUM_REDUCE_TASKS based on the size of your cluster. If the cluster is not being used for anything else a good rule of thumb is to make NUM_REDUCE_TASKS equal the number of available reduce slots on your cluster. See hadoop docs to determine the number of reduce slots available on your cluster.
+    Luigi, the underlying workflow engine, has support for both S3 and HDFS when specifying input and output paths. s3:// can be replaced with hdfs:// in all examples below.
+    “credentials” files are json files should be stored somewhere secure and have the following format. They are often stored in S3 or HDFS but can also be stored on the local filesystem of the machine running the data pipeline.
+
+    lms-creds.json
+
+        {
+          "host": "your.mysql.host.com",
+          "port": "3306",
+          "username": "someuser",
+          "password": "passwordforsomeuser",
+        }
+
+Performance (Graded and Ungraded)
+Notes
+
+    Intended to run daily (or more frequently).
+    This was one of the first tasks we wrote so it uses some deprecated patterns.
+    You can tweak the event log pattern to restrict the amount of data this runs on, it will grab the most recent answer for each part of each problem for each student.
+    You can find the source for building edx-analytics-hadoop-util.jar at https://github.com/edx/edx-analytics-hadoop-util.
+
+Task
+
+AnswerDistributionWorkflow --local-scheduler \
+  --src ["s3://path/to/tracking/logs/"] \
+  --dest s3://folder/where/intermediate/files/go/ \
+  --name unique_name \
+  --output-root s3://final/output/path/ \
+  --include ["*tracking.log*.gz"] \
+  --manifest "s3://scratch/path/to/manifest.txt" \
+  --base-input-format "org.edx.hadoop.input.ManifestTextInputFormat" \
+  --lib-jar ["hdfs://localhost:9000/edx-analytics-pipeline/packages/edx-analytics-hadoop-util.jar"] \
+  --n-reduce-tasks $NUM_REDUCE_TASKS \
+  --marker $dest/marker \
+  --credentials s3://secure/path/to/result_store_credentials.json
+
+Parameter Descriptions
+
+    --src: This should be a list of HDFS/S3 paths to the root (or roots) of your tracking logs, expressed as a JSON list.
+    --dest: This can be any location in HDFS/S3 that doesn’t exist yet.
+    --name: This can be any alphanumeric string, using the same string will attempt to use the same intermediate outputs etc.
+    --output-root: This can be any location in HDFS/S3 that doesn’t exist yet.
+    --include: This glob pattern should match all of your tracking log files, and be expressed as a JSON list.
+    --manifest: This can be any path in HDFS/S3 that doesn’t exist yet, a file will be written here.
+    --base-input-format: This is the name of the class within the jar to use to process the manifest.
+    --lib-jar: This is the path to the jar containing the above class. Note that it should be an HDFS/S3 path, and expressed as a JSON list.
+    --n-reduce-tasks: Number of reduce tasks to schedule.
+    --marker: This should be an HDFS/S3 path that doesn’t exist yet. If this marker exists, the job will think it has already run.
+    --credentials: See discussion of credential files above. These should be the credentials for the result store database to write the result to.
+
+Functional example:
+
+remote-task AnswerDistributionWorkflow --host localhost --user ubuntu --remote-name analyticstack --skip-setup --wait \
+  --local-scheduler  --verbose \
+  --src ["hdfs://localhost:9000/data"] \
+  --dest hdfs://localhost:9000/tmp/pipeline-task-scheduler/AnswerDistributionWorkflow/1449177792/dest \
+  --name pt_1449177792 \
+  --output-root hdfs://localhost:9000/tmp/pipeline-task-scheduler/AnswerDistributionWorkflow/1449177792/course \
+  --include ["*tracking.log*.gz"] \
+  --manifest hdfs://localhost:9000/tmp/pipeline-task-scheduler/AnswerDistributionWorkflow/1449177792/manifest.txt \
+  --base-input-format "org.edx.hadoop.input.ManifestTextInputFormat"  \
+  --lib-jar ["hdfs://localhost:9000/edx-analytics-pipeline/site-packages/edx-analytics-hadoop-util.jar"]  \
+  --n-reduce-tasks 1 \
+  --marker hdfs://localhost:9000/tmp/pipeline-task-scheduler/AnswerDistributionWorkflow/1449177792/marker  \
+  --credentials /edx/etc/edx-analytics-pipeline/output.json
+
+Enrollment
+Notes
+
+    Intended to run daily.
+    This populates most of the data needed by the “Enrollment” lens in insights, including the demographic breakdowns by age, gender, and level of education.
+    Requires the following sections in config files: hive, database-export, database-import, map-reduce, event-logs, manifest, enrollments. The course-summary-enrollment and course-catalog-api sections are optional.
+    The interval here, should be the beginning of time essentially. It computes enrollment by observing state changes from the beginning of time.
+    $FROM_DATE can be any string that is accepted by the unix utility date. Here are a few examples: “today”, “yesterday”, and “2016-05-01”.
+    overwrite_mysql controls whether or not the MySQL tables are replaced in a transaction during processing. Set this flag if you are fully replacing the table, false (default) otherwise.
+    overwrite_hive controls whether or not the Hive intermediate table metadata is removed and replaced during processing. Set this flag if you want the metadata to be fully recreated, false (default) otherwise.
+
+Task
+
+ImportEnrollmentsIntoMysql --local-scheduler \
+  --interval $(date +%Y-%m-%d -d "$FROM_DATE")-$(date +%Y-%m-%d -d "$TO_DATE") \
+  --n-reduce-tasks $NUM_REDUCE_TASKS \
+  --overwrite-mysql \
+  --overwrite-hive
+
+Incremental implementation
+
+On September 29, 2016 we merged a modification of the Enrollment workflow to master. The new code calculates Enrollment incrementally, rather than entirely from scratch each time. And it involves a new parameter: overwrite_n_days.
+
+The workflow now assumes that new Hive-ready data has been written persistently to the course_enrollment_events directory under warehouse_path by CourseEnrollmentEventsTask. The workflow uses the overwrite_n_days to determine how many days back to repopulate this data. The idea is that before this point, events are not expected to change, but perhaps there might be new events that have arrived in the last few days. We are currently running with a value of 3, and we define that as an enrollment parameter in our override.cfg file. You can define it there or on the command line.
+
+This means for us that only the last three days of raw events get scanned daily. It is assumed that the previous days’ data has been loaded by previous runs, or by performing a historical load.
+History task
+
+To load the historical enrollment events, you would need to first run:
+
+CourseEnrollmentEventsTask --local-scheduler \
+  --interval $(date +%Y-%m-%d -d "$FROM_DATE")-$(date +%Y-%m-%d -d "$TO_DATE") \
+  --n-reduce-tasks $NUM_REDUCE_TASKS
+
+Geography
+Notes
+
+    Intended to run daily.
+    This populates the map view in insights.
+    This is also one of our older tasks.
+    Finds the most recent event for every user and geolocates the IP address on the event.
+    This currently uses the student_courseenrollment table to figure out which users are enrolled in which courses. It should really be using the “course_enrollment” table computed by the enrollment and demographics related tasks.
+    Requires a maxmind data file (country granularity) to be uploaded to HDFS or S3 (see the geolocation section of the config file). Getting a data file could look like this:
+
+wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz
+gunzip GeoIP.dat.gz
+mv GeoIP.dat geo.dat
+hdfs dfs -put geo.dat /edx-analytics-pipeline/
+
+Task
+
+InsertToMysqlLastCountryPerCourseTask --local-scheduler \
+ --interval $(date +%Y-%m-%d -d "$FROM_DATE")-$(date +%Y-%m-%d -d "$TO_DATE") \
+ --course-country-output $INTERMEDIATE_OUTPUT_ROOT/$(date +%Y-%m-%d -d "$TO_DATE")/country_course \
+ --n-reduce-tasks $NUM_REDUCE_TASKS \
+ --overwrite
+
+Incremental implementation
+
+On November 19, 2016 we merged a modification of the Location workflow to master. The new code calculates Location incrementally, rather than entirely from scratch each time. And it involves a new parameter: overwrite_n_days.
+
+The workflow now assumes that new Hive-ready data has been written persistently to the last_ip_of_user_id directory under warehouse_path by LastDailyIpAddressOfUserTask.(Before May 9,2018, this used the last_ip_of_user directory for output.) The workflow uses the overwrite_n_days to determine how many days back to repopulate this data. The idea is that before this point, events are not expected to change, but perhaps there might be new events that have arrived in the last few days. We are currently running with a value of 3, and we define that as an enrollment parameter in our override.cfg file. You can define it there (as overwrite_n_days in the [location-per-course] section) or on the command line (as --overwrite-n-days).
+
+This means for us that only the last three days of raw events get scanned daily. It is assumed that the previous days’ data has been loaded by previous runs, or by performing a historical load.
+
+Another change is to allow the interval start to be defined in configuration (as interval_start in the [location-per-course] section). One can then specify instead just the end date on the workflow:
+
+InsertToMysqlLastCountryPerCourseTask --local-scheduler \
+ --interval-end $(date +%Y-%m-%d -d "$TO_DATE") \
+ --course-country-output $INTERMEDIATE_OUTPUT_ROOT/$(date +%Y-%m-%d -d "$TO_DATE")/country_course \
+ --n-reduce-tasks $NUM_REDUCE_TASKS \
+ --overwrite
+
+On December 5, 2016 the --course-country-output parameter was removed. That data is instead written to the warehouse_path.
+History task
+
+To load the historical location data, you would need to first run:
+
+LastDailyIpAddressOfUserTask --local-scheduler \
+  --interval $(date +%Y-%m-%d -d "$FROM_DATE")-$(date +%Y-%m-%d -d "$TO_DATE") \
+  --n-reduce-tasks $NUM_REDUCE_TASKS
+
+Note that this does not use the interval_start configuration value, so specify the full interval.
+Engagement
+Notes
+
+    Intended to be run weekly or daily.
+    When using a persistent hive metastore, set overwrite_hive to True.
+
+Task
+
+InsertToMysqlCourseActivityTask --local-scheduler \
+  --end-date $(date +%Y-%m-%d -d "$TO_DATE") \
+  --weeks 24 \
+  --credentials $CREDENTIALS \
+  --n-reduce-tasks $NUM_REDUCE_TASKS \
+  --overwrite-mysql
+
+Incremental implementation
+
+On December 05, 2017 we merged a modification of the Engagement workflow to master. The new code calculates Engagement incrementally, rather than entirely from scratch each time. And it involves a new parameter: overwrite_n_days.
+
+Also, the workflow has been renamed from CourseActivityWeeklyTask to InsertToMysqlCourseActivityTask.
+
+The workflow now assumes that new Hive-ready data has been written persistently to the user_activity directory under warehouse_path by UserActivityTask. The workflow uses the overwrite_n_days to determine how many days back to repopulate this data. The idea is that before this point, events are not expected to change, but perhaps there might be new events that have arrived in the last few days. We are currently running the workflow daily with a value of 3, and we define that as an user-activity parameter in our override.cfg file. You can define it there or on the command line.
+
+This means for us that only the last three days of raw events get scanned daily. It is assumed that the previous days’ data has been loaded by previous runs, or by performing a historical load.
+
+If this workflow is run weekly, an overwrite_n_days value of 10 would be more appropriate.
+History task
+
+To load the historical user-activity counts, you would need to first run:
+
+UserActivityTask --local-scheduler \
+  --interval $(date +%Y-%m-%d -d "$FROM_DATE")-$(date +%Y-%m-%d -d "$TO_DATE") \
+  --n-reduce-tasks $NUM_REDUCE_TASKS
+
+or you could run the incremental workflow with an overwrite_n_days value large enough that it would calculate the historical user-activity counts the first time it is ran:
+
+InsertToMysqlCourseActivityTask --local-scheduler \
+  --end-date $(date +%Y-%m-%d -d "$TO_DATE") \
+  --weeks 24 \
+  --credentials $CREDENTIALS \
+  --n-reduce-tasks $NUM_REDUCE_TASKS \
+  --overwrite-n-days 169
+
+After the first run, you can change overwrite_n_days to 3 or 10 depending on how you plan to run it(daily/weekly).
+Video
+Notes
+
+    Intended to be run daily.
+
+Task
+
+InsertToMysqlAllVideoTask --local-scheduler \
+  --interval $(date +%Y-%m-%d -d "$FROM_DATE")-$(date +%Y-%m-%d -d "$TO_DATE") \
+  --n-reduce-tasks $NUM_REDUCE_TASKS
+
+Incremental implementation
+
+On October 16, 2017 we merged a modification of the Video workflow to master. The new code calculates Video incrementally, rather than entirely from scratch each time. And it involves a new parameter: overwrite_n_days.
+
+The workflow now assumes that new Hive-ready data has been written persistently to the user_video_viewing_by_date directory under warehouse_path by UserVideoViewingByDateTask. The workflow uses the overwrite_n_days to determine how many days back to repopulate this data. The idea is that before this point, events are not expected to change, but perhaps there might be new events that have arrived in the last few days, particularly if coming from a mobile source. We are currently running the workflow daily with a value of 3, and we define that as a video parameter in our override.cfg file. You can define it there or on the command line.
+
+This means for us that only the last three days of raw events get scanned daily. It is assumed that the previous days’ data has been loaded by previous runs, or by performing a historical load.
+History task
+
+To load the historical video counts, you would need to first run:
+
+UserVideoViewingByDateTask --local-scheduler \
+  --interval $(date +%Y-%m-%d -d "$FROM_DATE")-$(date +%Y-%m-%d -d "$TO_DATE") \
+  --n-reduce-tasks $NUM_REDUCE_TASKS
+
+or you could run the incremental workflow with an overwrite_n_days value large enough that it would calculate the historical video counts the first time it is ran:
+
+InsertToMysqlAllVideoTask --local-scheduler \
+  --interval $(date +%Y-%m-%d -d "$FROM_DATE")-$(date +%Y-%m-%d -d "$TO_DATE") \
+  --n-reduce-tasks $NUM_REDUCE_TASKS
+  --overwrite-n-days 169
+
+After the first run, you can change overwrite_n_days to 3.
+Learner Analytics
+Notes
+
+    Intended to run daily.
+    This populates most of the data needed by the “Learner Analytics” lens in insights.
+    This uses more up-to-date patterns.
+    Requires the following sections in config files: hive, database-export, database-import, map-reduce, event-logs, manifest, module-engagement.
+    It is an incremental implementation, so it requires persistent storage of previous runs. It also requires an initial load of historical data.
+    Requires the availability of a separate ElasticSearch instance running 1.5.2. This is different from the version that the LMS uses, which is still on 0.90.
+
+History task
+
+The workflow assumes that new Hive-ready data has been written persistently to the module_engagement directory under warehouse_path by ModuleEngagementIntervalTask. The workflow uses the overwrite_n_days to determine how many days back to repopulate this data. The idea is that before this point, events are not expected to change, but perhaps there might be new events that have arrived in the last few days. We are currently running with a value of 3, and this can be overridden on the command-line or defined as a [module-engagement] parameter in the override.cfg file. This means for us that only the last three days of raw events get scanned daily. It is assumed that the previous days’ data has been loaded by previous runs, or by performing a historical load.
+
+To load module engagement history, you would first need to run:
+
+ModuleEngagementIntervalTask --local-scheduler \
+  --interval $(date +%Y-%m-%d -d "$FROM_DATE")-$(date +%Y-%m-%d -d "$TO_DATE") \
+  --n-reduce-tasks $NUM_REDUCE_TASKS \
+  --overwrite-from-date $(date +%Y-%m-%d -d "$TO_DATE") \
+  --overwrite-mysql
+
+Since module engagement in Insights only looks at the last two weeks of activity, you only need FROM_DATE to be two weeks ago. The TO_DATE need only be within N days of today (as specified by --overwrite-n-days). Setting --overwrite-mysql will ensure that all the historical data is also written to the Mysql Result Store. Using --overwrite-from-date is important when “fixing” data (for some reason): setting it earlier (i.e. to FROM_DATE) will cause the Hive data to also be overwritten for those earlier days.
+
+Another prerequisite before running the module engagement workflow below is to have run enrollment first. It is assumed that the course_enrollment directory under warehouse_path has been populated by running enrollment with a TO_DATE matching that used for the module engagement workflow (i.e. today).
+Task
+
+We run the module engagement job daily, which adds the most recent day to this while it is overwriting the last N days (as set by the --overwrite-n-days parameter). This calculates aggregates and loads them into ES and MySQL.
+
+ModuleEngagementWorkflowTask --local-scheduler \
+  --date $(date +%Y-%m-%d -d "$TO_DATE") \
+  --indexing-tasks 5 \
+  --throttle 0.5 \
+  --n-reduce-tasks $NUM_REDUCE_TASKS
+
+The value of TO_DATE is today.
+
+
+****************************************its worked***********************
+
+Candidates are: ActiveUsersPartitionTask,
+ActiveUsersTableTask,
+ActiveUsersTask,
+ActiveUsersWorkflow,AggregateInternalReportingUserTableHive,
+AnswerDistributionOneFilePerCourseTask,
+AnswerDistributionPerCourse,AnswerDistributionToMySQLTaskWorkflow,
+AnswerDistributionWorkflow,BareHiveTableTask,BaseAnswerDistributionTask,
+BaseCourseMetadataTask,BaseCourseRunMetadataTask,BaseEventRecordDataTask,BaseHadoopJobTask,
+BaseObfuscateDumpTask,BigQueryLoadTask,BuildEdServicesReportTask,BuildFinancialReportsTask,BulkEventRecordIntervalTask,
+CalendarTableTask,CalendarTask,Config,CourseActivityPartitionTask,CourseActivityTableTask,CourseBlocksApiDataTask,CourseBlocksPartitionTask,
+CourseBlocksTableTask,CourseContentTask,CourseDataTask,CourseEnrollmentEventsTask,CourseEnrollmentPartitionTask,CourseEnrollmentSummaryPartitionTask,
+CourseEnrollmentSummaryTableTask,CourseEnrollmentSummaryTask,CourseEnrollmentTableTask,CourseEnrollmentTask,CourseEnrollmentValidationPerDateTask,
+CourseEnrollmentValidationTask,CourseGradeByModeDataTask,CourseGradeByModePartitionTask,CourseGradeByModeTableTask,CourseListApiDataTask,
+CourseListPartitionTask,CourseListTableTask,CourseMetaSummaryEnrollmentDataTask,CourseMetaSummaryEnrollmentIntoMysql,CourseMetaSummaryEnrollmentPartitionTask,
+CourseMetaSummaryEnrollmentTableTask,CoursePartitionTask,CourseProgramMetadataDataTask,CourseProgramMetadataInsertToMysqlTask,CourseProgramMetadataPartitionTask,
+CourseProgramMetadataTableTask,CourseSeatTask,CourseStructureTask,CourseSubjectTask,CourseTableTask,CreateAllEnrollmentValidationEventsTask,
+CreateEnrollmentValidationEventsForTodayTask,CreateEnrollmentValidationEventsTask,CybersourceDataValidationTask,DailyProcessFromCybersourceTask,
+DailyPullFromCybersourceTask,DataObfuscationTask,ElasticsearchIndexTask,EnrollmentByBirthYearDataTask,EnrollmentByBirthYearPartitionTask,
+EnrollmentByBirthYearTaskTableTask,EnrollmentByBirthYearToMysqlTask,EnrollmentByEducationLevelDataTask,EnrollmentByEducationLevelMysqlTask,
+EnrollmentByEducationLevelPartitionTask,EnrollmentByEducationLevelTableTask,EnrollmentByGenderDataTask,EnrollmentByGenderHivePartitionTask,
+EnrollmentByGenderHiveTableTask,EnrollmentByGenderMysqlTask,EnrollmentByModeDataTask,EnrollmentByModePartitionTask,EnrollmentByModeTableTask,
+EnrollmentByModeTask,EnrollmentDailyDataTask,EnrollmentDailyMysqlTask,EnrollmentDailyPartitionTask,EnrollmentDailyTableTask,EnrollmentValidationWorkflow,
+EnterpriseEnrollmentDataTask,EnterpriseEnrollmentHivePartitionTask,EnterpriseEnrollmentHiveTableTask,EnterpriseEnrollmentMysqlTask,EventExportByCourseTask,
+EventExportTask,EventObfuscationTask,EventRecordIntervalTask,EventRecordPartitionTask,EventRecordTableTask,EventTypeDistributionTask,ExternalCourseEnrollmentPartitionTask,
+ExternalHiveTask,ExternalLastCountryOfUserToHiveTask,ExternalTask,ExternalURL,GradeDistFromSqoopToMySQLWorkflow,GradeDistFromSqoopToTSVWorkflow,
+HistogramFromSqoopToMySQLWorkflowBase,HistogramFromStudentModuleSqoopWorkflowBase,HivePartitionTask,HiveQueryTask,HiveTableFromQueryTask,HiveTableTask,
+ImportAllDatabaseTablesTask,ImportAuthUserProfileTask,ImportAuthUserTask,ImportBenefitTask,ImportConditionalOfferTask,ImportCountryWorkflow,
+ImportCouponVoucherIndirectionState,ImportCouponVoucherState,ImportCourseEntitlementTask,ImportCourseModeTask,ImportCourseUserGroupTask,
+ImportCourseUserGroupUsersTask,ImportCurrentOrderDiscountState,ImportCurrentOrderLineState,ImportCurrentOrderState,ImportCurrentRefundRefundLineState,
+ImportDataSharingConsentTask,ImportEcommercePartner,ImportEcommerceUser,ImportEnrollmentsIntoMysql,ImportEnterpriseCourseEnrollmentUserTask,
+ImportEnterpriseCustomerTask,ImportEnterpriseCustomerUserTask,ImportEnterpriseEnrollmentsIntoMysql,ImportGeneratedCertificatesTask,ImportIntoHiveTableTask,
+ImportMysqlDatabaseToBigQueryDatasetTask,ImportMysqlToHiveTableTask,ImportMysqlToVerticaTask,ImportPersistentCourseGradeTask,ImportProductCatalog,
+ImportProductCatalogAttributeValues,ImportProductCatalogAttributes,ImportProductCatalogClass,ImportShoppingCartCertificateItem,ImportShoppingCartCoupon,
+ImportShoppingCartCouponRedemption,ImportShoppingCartCourseRegistrationCodeItem,ImportShoppingCartDonation,ImportShoppingCartOrder,ImportShoppingCartOrderItem,
+ImportShoppingCartPaidCourseRegistration,ImportStockRecordTask,ImportStudentCourseEnrollmentTask,ImportUserSocialAuthTask,ImportVoucherTask,IncrementalMysqlInsertTask,
+IncrementalVerticaCopyTask,InsertToMysqlAllVideoTask,InsertToMysqlAnswerDistributionTableBase,InsertToMysqlCourseActivityTask,InsertToMysqlLastCountryPerCourseTask,
+InsertToMysqlVideoTask,InsertToMysqlVideoTimelineTask,IntervalPullFromCybersourceTask,JobTask,JoinProgramCourseWithOrderTask,JoinedStudentEngagementTableTask,
+LMSCoursewareLinkClickedTask,LastCountryOfUser,LastCountryOfUserPartitionTask,LastCountryOfUserTableTask,LastDailyIpAddressOfUserTask,LatestProblemResponseDataTask,
+LatestProblemResponsePartitionTask,LatestProblemResponseTableTask,LoadDailyEventRecordToBigQuery,LoadDailyEventRecordToVertica,LoadEventRecordIntervalToBigQuery,
+LoadEventRecordIntervalToVertica,LoadEventsIntoWarehouseWorkflow,LoadInternalReportingActiveUsersToWarehouse,LoadInternalReportingCertificatesTableHive,
+LoadInternalReportingCertificatesToBigQuery,LoadInternalReportingCertificatesToWarehouse,LoadInternalReportingCountryTableHive,LoadInternalReportingCountryToBigQuery,
+LoadInternalReportingCountryToWarehouse,LoadInternalReportingCourseCatalogToBigQuery,LoadInternalReportingCourseCatalogToWarehouse,
+LoadInternalReportingCourseSeatToBigQuery,LoadInternalReportingCourseSeatToWarehouse,LoadInternalReportingCourseSubjectToBigQuery,
+LoadInternalReportingCourseSubjectToWarehouse,LoadInternalReportingCourseToBigQuery,LoadInternalReportingCourseToWarehouse,
+LoadInternalReportingEdServicesReportToWarehouse,LoadInternalReportingOrderTransactionsToWarehouse,LoadInternalReportingProgramCourseToBigQuery,
+LoadInternalReportingProgramCourseToWarehouse,LoadInternalReportingUserActivityToBigQuery,LoadInternalReportingUserActivityToWarehouse,
+LoadInternalReportingUserToBigQuery,LoadInternalReportingUserToWarehouse,LoadMysqlToBigQueryTableTask,LoadMysqlToVerticaTableTask,LoadUserCourseSummary,
+LoadUserCourseSummaryToBigQuery,LoadVerticaTableToBigQuery,LoadWarehouseBigQueryTask,LoadWarehouseTask,LoadWarehouseWorkflow,MapReduceJobTask,
+ModuleEngagementDataTask,ModuleEngagementIntervalTask,ModuleEngagementMysqlTask,ModuleEngagementPartitionTask,ModuleEngagementRosterIndexTask,
+ModuleEngagementRosterPartitionTask,ModuleEngagementRosterTableTask,ModuleEngagementSummaryDataTask,ModuleEngagementSummaryMetricRangesDataTask,
+ModuleEngagementSummaryMetricRangesMysqlTask,ModuleEngagementSummaryMetricRangesPartitionTask,ModuleEngagementSummaryMetricRangesTableTask,
+ModuleEngagementSummaryPartitionTask,ModuleEngagementSummaryTableTask,ModuleEngagementTableTask,ModuleEngagementUserSegmentDataTask,
+ModuleEngagementUserSegmentPartitionTask,ModuleEngagementUserSegmentTableTask,ModuleEngagementWorkflowTask,MultiCourseObfuscatedCourseTask,
+MultiCourseObfuscatedPackageTask,MultiOutputMapReduceJobTask,MysqlInsertTask,ObfuscateAuthUserProfileTask,ObfuscateAuthUserTask,
+ObfuscateCertificatesGeneratedCertificate,ObfuscateCourseEventsTask,ObfuscateCoursewareStudentModule,ObfuscateMongoDumpsTask,
+ObfuscateSqlDumpTask,ObfuscateStudentCourseEnrollmentTask,ObfuscateStudentLanguageProficiencyTask,ObfuscateTeamsMembershipTask,
+ObfuscateTeamsTask,ObfuscateUserApiUserCourseTagTask,ObfuscateVerificationStatusTask,ObfuscateWikiArticleRevisionTask,ObfuscateWikiArticleTask,
+ObfuscatedCourseDumpTask,ObfuscatedCourseTask,ObfuscatedPackageTask,OrderTableTask,OverwriteAwareHiveQueryDataTask,
+ParseEventLogPerformanceTask,PathSelectionByDateIntervalTask,PathSetTask,PaymentTask,PaymentValidationTask,PaypalDataValidationTask,
+PaypalTransactionsByDayTask,PaypalTransactionsIntervalTask,PerDateGeneralEventRecordDataTask,PerDateSegmentEventRecordDataTask,
+PerDateTrackingEventRecordDataTask,PostImportDatabaseTask,PostLoadWarehouseTask,PreImportDatabaseTask,PreLoadWarehouseTask,
+ProblemCheckEvent,ProblemResponseLocationPartitionTask,ProblemResponseLocationTableTask,ProblemResponseReportTask,
+ProblemResponseReportWorkflow,ProblemResponseTableTask,ProgramCourseDataTask,ProgramCourseOrderDataTask,ProgramCourseOrderPartitionTask,
+ProgramCourseOrderTableTask,ProgramCoursePartitionTask,ProgramCourseTableTask,PruneEventPartitionsInVertica,PullCourseBlocksApiData,
+PullCourseListApiData,PullDiscoveryCourseRunsAPIData,PullDiscoveryCoursesAPIData,PullDiscoveryProgramsAPIData,PushToVerticaEventTypeDistributionTask,
+PushToVerticaLMSCoursewareLinkClickedTask,QueryLastCountryPerCourseTask,RangeBase,RangeByMinutes,RangeByMinutesBase,RangeDaily,RangeDailyBase,
+RangeHourly,RangeHourlyBase,ReconcileOrdersAndTransactionsTask,ReconciledOrderTransactionTableTask,RunVerticaSqlScriptTask,RunVerticaSqlScriptsTask,
+S3EmrTask,S3FlagTask,S3PathTask,SchemaManagementTask,SegmentEventRecordDataTask,SeqOpenDistFromSqoopToMySQLWorkflow,
+SeqOpenDistFromSqoopToTSVWorkflow,SqoopImportFromMysql,SqoopImportFromVertica,SqoopImportTask,StudentEngagementCsvFileTask,
+StudentEngagementDataTask,StudentEngagementPartitionTask,StudentEngagementRawTableTask,StudentEngagementTableTask,StudentEngagementTask,
+StudentEngagementToMysqlTask,StudentModulePerCourseAfterImportWorkflow,StudentModulePerCourseTask,TagsDistributionPerCourse,TagsDistributionWorkflow,
+Task,TestNotificationsTask,TotalEventsDailyTask,TotalEventsReport,TotalEventsReportWorkflow,TrackingEventRecordDataTask,TransactionReportTask,
+UncheckedExternalURL,UserActivityTableTask,UserActivityTask,UserVideoViewingByDateTask,UserVideoViewingTask,VerticaCopyTask,
+VerticaSchemaToBigQueryTask,VerticaTableToS3Task,VideoDataTask,VideoPartitionTask,VideoTableTask,VideoTimelineDataTask,VideoTimelinePartitionTask,
+VideoTimelineTableTask,VideoUsageTableTask,VideoUsageTask,WrapperTask,
+batch_email,core,email,execution_summary,hadoop,hadoopcli,hdfs,retcode,scheduler,sendgrid,smtp,webhdfs,worker
+
+edx.analytics.tasks =
+
+    # common
+    sqoop-import = edx.analytics.tasks.common.sqoop:SqoopImportFromMysql
+    insert-into-table = edx.analytics.tasks.common.mysql_load:MysqlInsertTask
+    bigquery-load = edx.analytics.tasks.common.bigquery_load:BigQueryLoadTask
+
+    # insights
+    answer-dist = edx.analytics.tasks.insights.answer_dist:AnswerDistributionPerCourse
+    calendar = edx.analytics.tasks.insights.calendar_task:CalendarTableTask
+    course_blocks = edx.analytics.tasks.insights.course_blocks:CourseBlocksApiDataTask
+    course_list = edx.analytics.tasks.insights.course_list:CourseListApiDataTask
+    database-import = edx.analytics.tasks.insights.database_imports:ImportAllDatabaseTablesTask
+    engagement = edx.analytics.tasks.insights.module_engagement:ModuleEngagementDataTask
+    enrollments = edx.analytics.tasks.insights.enrollments:ImportEnrollmentsIntoMysql
+    location-per-course = edx.analytics.tasks.insights.location_per_course:LastCountryOfUser
+    problem_response = edx.analytics.tasks.insights.problem_response:LatestProblemResponseDataTask
+    tags-dist = edx.analytics.tasks.insights.tags_dist:TagsDistributionPerCourse
+    user-activity = edx.analytics.tasks.insights.user_activity:InsertToMysqlCourseActivityTask
+    video = edx.analytics.tasks.insights.video:InsertToMysqlAllVideoTask
+
+    # data_api
+    grade-dist = edx.analytics.tasks.data_api.studentmodule_dist:GradeDistFromSqoopToMySQLWorkflow
+    student_engagement = edx.analytics.tasks.data_api.student_engagement:StudentEngagementTask
+
+    # warehouse:
+    event-type-dist = edx.analytics.tasks.warehouse.event_type_dist:PushToVerticaEventTypeDistributionTask
+    load-course-catalog = edx.analytics.tasks.warehouse.load_internal_reporting_course_catalog:PullDiscoveryCoursesAPIData
+    load-d-certificates = edx.analytics.tasks.warehouse.load_internal_reporting_certificates:LoadInternalReportingCertificatesToWarehouse
+    load-d-country = edx.analytics.tasks.warehouse.load_internal_reporting_country:LoadInternalReportingCountryToWarehouse
+    load-d-user = edx.analytics.tasks.warehouse.load_internal_reporting_user:LoadInternalReportingUserToWarehouse
+    load-d-user-course = edx.analytics.tasks.warehouse.load_internal_reporting_user_course:LoadUserCourseSummary
+    load-events = edx.analytics.tasks.warehouse.load_internal_reporting_events:TrackingEventRecordDataTask
+    load-f-user-activity = edx.analytics.tasks.warehouse.load_internal_reporting_user_activity:LoadInternalReportingUserActivityToWarehouse
+    load-internal-database = edx.analytics.tasks.warehouse.load_internal_reporting_database:ImportMysqlToVerticaTask
+    load-internal-active-users = edx.analytics.tasks.warehouse.load_internal_reporting_active_users:LoadInternalReportingActiveUsersToWarehouse
+    load-warehouse = edx.analytics.tasks.warehouse.load_warehouse:LoadWarehouseWorkflow
+    load-warehouse-bigquery=edx.analytics.tasks.warehouse.load_warehouse_bigquery:LoadWarehouseBigQueryTask
+    push_to_vertica_lms_courseware_link_clicked = edx.analytics.tasks.warehouse.lms_courseware_link_clicked:PushToVerticaLMSCoursewareLinkClickedTask
+    run-vertica-sql-script = edx.analytics.tasks.warehouse.run_vertica_sql_script:RunVerticaSqlScriptTask
+    run-vertica-sql-scripts = edx.analytics.tasks.warehouse.run_vertica_sql_scripts:RunVerticaSqlScriptTask
+    test-vertica-sqoop = edx.analytics.tasks.common.vertica_export:VerticaSchemaToBigQueryTask
+
+    # financial:
+    cybersource = edx.analytics.tasks.warehouse.financial.cybersource:DailyPullFromCybersourceTask
+    ed_services_report = edx.analytics.tasks.warehouse.financial.ed_services_financial_report:BuildEdServicesReportTask
+    financial_reports  = edx.analytics.tasks.warehouse.financial.finance_reports:BuildFinancialReportsTask
+    orders = edx.analytics.tasks.warehouse.financial.orders_import:OrderTableTask
+    payment_reconcile = edx.analytics.tasks.warehouse.financial.reconcile:ReconcileOrdersAndTransactionsTask
+    paypal = edx.analytics.tasks.warehouse.financial.paypal:PaypalTransactionsByDayTask
+
+    # export:
+    data_obfuscation   = edx.analytics.tasks.export.data_obfuscation:ObfuscatedCourseDumpTask
+    dump-student-module = edx.analytics.tasks.export.database_exports:StudentModulePerCourseTask
+    events_obfuscation = edx.analytics.tasks.export.events_obfuscation:ObfuscateCourseEventsTask
+    export-events = edx.analytics.tasks.export.event_exports:EventExportTask
+    export-events-by-course = edx.analytics.tasks.export.event_exports_by_course:EventExportByCourseTask
+    export-student-module = edx.analytics.tasks.export.database_exports:StudentModulePerCourseAfterImportWorkflow
+    obfuscation = edx.analytics.tasks.export.obfuscation:ObfuscatedCourseTask
+
+    # monitor:
+    all_events_report = edx.analytics.tasks.monitor.total_events_report:TotalEventsReportWorkflow
+    enrollment_validation = edx.analytics.tasks.monitor.enrollment_validation:CourseEnrollmentValidationTask
+    overall_events = edx.analytics.tasks.monitor.overall_events:TotalEventsDailyTask
+    noop = edx.analytics.tasks.monitor.performance:ParseEventLogPerformanceTask
+
+    # enterprise:
+    enterprise_enrollments = edx.analytics.tasks.enterprise.enterprise_enrollments:ImportEnterpriseEnrollmentsIntoMysql
+
+usage: launch-task
+
+
+SqoopImportFromMysql(destination=hdfs://server:9000/edx-analytics-pipeline/warehouse/, credentials=/edx/etc/edx-analytics-pipeline/input.json, database=edxapp, where=None, table_name=auth_userprofile, columns=[], null_string=None, fields_terminated_by=None, delimiter_replacement=None, mysql_delimiters=True
+SqoopImportFromMysql(destination=hdfs://server:9000/edx-analytics-pipeline/warehouse/auth_userprofile/dt=2023-02-27/, credentials=/edx/etc/edx-analytics-pipeline/input.json, database=edxapp, where=None, table_name=auth_userprofile, columns=["user_id", "name", "gender", "year_of_birth", "level_of_education", "language", "location", "mailing_address", "city", "country", "goals"], null_string=\\N, fields_terminated_by=, delimiter_replacement= , mysql_delimiters=False) or any dependencies due to error in complete() method:
+**************enrolments*****************
+launch-task ImportEnrollmentsIntoMysql --local-scheduler \
+  --interval 2018-01-01-2018-12-12 \
+  --n-reduce-tasks 1 \
+  --overwrite-mysql \
+  --overwrite-hive  --overwrite-n-days 365
+
+remote-task --host insights --user vladimir --private-key /home/vladimir/yandex-fa.pem --remote-name analyticstack --skip-setup --wait   
+ModuleEngagementWorkflowTask \
+--date $(date +%Y-%m-%d -d "2021-12-12") \
+--indexing-tasks 5 \
+--throttle 0.5 \
+--n-reduce-tasks 1
+--local-scheduler
+
+**********geog****
+remote-task --host server3 --user vladimir --private-key /home/vladimir/yandex-fa.pem --remote-name analyticstack --skip-setup --wait InsertToMysqlLastCountryPerCourseTask --local-scheduler \
+  --interval 2020-01-01-2020-09-09 \
+  --n-reduce-tasks 1 \
+  --overwrite-mysql \
+  --overwrite-hive  --overwrite-n-days 15  --course-country-output hdfs://localhost:9000/tmp/2020-09-06/user/country_course 
+
+remote-task --host insights --user vladimir --private-key /home/vladimir/yandex-fa.pem --remote-name analyticstack --skip-setup --wait  \
+ --local-scheduler  CourseListApiDataTask   --output-root hdfs://localhost:9000/output/
+  
+remote-task --host insights --user vladimir --private-key /home/vladimir/yandex-fa.pem --remote-name analyticstack --skip-setup --wait  --local-scheduler   \
+LastCountryOfUser   --interval 2022-01-01-2022-12-12 \
+  --n-reduce-tasks 1 \
+  --overwrite-n-days 365
+
+InsertToMysqlLastCountryPerCourseTask --local-scheduler \
+ --interval $(date +%Y-%m-%d -d "$FROM_DATE")-$(date +%Y-%m-%d -d "$TO_DATE") \
+ --course-country-output $INTERMEDIATE_OUTPUT_ROOT/$(date +%Y-%m-%d -d "$TO_DATE")/country_course \
+ --n-reduce-tasks $NUM_REDUCE_TASKS \
+ --overwrite
+ 
+ *********engagement**************
+remote-task --host server3 --user vladimir --private-key /home/vladimir/yandex-fa.pem --remote-name analyticstack --skip-setup --wait  InsertToMysqlCourseActivityTask --local-scheduler   --end-date 2020-09-09   --weeks 24   --overwrite-mysql --overwrite-n-days 7
+
+ InsertToMysqlCourseActivityTask --local-scheduler \
+  --end-date $(date +%Y-%m-%d -d "$TO_DATE") \
+  --weeks 24 \
+  --credentials $CREDENTIALS \
+  --n-reduce-tasks $NUM_REDUCE_TASKS \
+  --overwrite-n-days 169
+  
+  ******************4tesk def*************
+remote-task --host localhost --repo https://github.com/edx/edx-analytics-pipeline --user ubuntu --override-config $HOME/edx-analytics-pipeline/config/devstack.cfg --wheel-url http://edx-wheelhouse.s3-website-us-east-1.amazonaws.com/Ubuntu/precise --remote-name analyticstack --wait TotalEventsDailyTask --interval 2016-08-13-2016-10-24 --output-root hdfs://localhost:9000/output/ --local-scheduler 
+remote-task --host localhost --user ubuntu --remote-name analyticstack --skip-setup --wait CourseEnrollmentEventsTask --local-scheduler   --interval 2016-08-13-2016-10-24   --n-reduce-tasks 1
+remote-task --host localhost --user ubuntu --remote-name analyticstack --skip-setup --wait ImportEnrollmentsIntoMysql --interval 2016-10-21-2016-10-22 --local-scheduler --overwrite-n-days 1
+remote-task --host localhost --user ubuntu --remote-name analyticstack --skip-setup --wait CourseEnrollmentEventsTask --local-scheduler   --interval 2016-08-13-2016-10-24   --n-reduce-tasks 1
+
+ 
+remote-task --host server3 --user vladimir --private-key /home/vladimir/yandex-fa.pem --remote-name analyticstack --skip-setup --wait InsertToMysqlLastCountryPerCourseTask --local-scheduler --interval 2020-01-01-2020-09-09 --overwrite-n-days 15
+
+remote-task --host server3 --user vladimir --private-key /home/vladimir/yandex-fa.pem --remote-name analyticstack --skip-setup --wait LastDailyIpAddressOfUserTask --local-scheduler    --interval 2020-01-01-2020-09-06 
+
+remote-task --host server3 --user vladimir --private-key /home/vladimir/yandex-fa.pem --remote-name analyticstack --skip-setup --wait  InsertToMysqlCourseActivityTask --local-scheduler   --end-date 2020-09-06   --weeks 24   --overwrite-mysql --overwrite-n-days 15
+
+
+remote-task --host server3 --user vladimir --private-key /home/vladimir/yandex-fa.pem --remote-name analyticstack --skip-setup --wait  InsertToMysqlLastCountryPerCourseTask --local-scheduler --interval 2016-09-01-2020-09-06 --user-country-output hdfs://localhost:9000/tmp/2020-09-06/user_location --course-country-output hdfs://localhost:9000/tmp/2020-09-06/user/country_course --n-reduce-tasks 1 --overwrite --credentials /edx/etc/edx-analytics-pipeline/input.json
+
+/edx/app/hadoop/hadoop/bin/hdfs dfs -put -f /edx/var/log/tracking/tracking.log hdfs://server3:9000/data/tracking.log
+
+hdfs dfs -ls /data
+
+/edx/app/hadoop/hadoop/bin/hadoop
+ jar /edx/app/hadoop/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.7.2.jar
+ -D "mapred.job.name=CourseListApiDataTask(warehouse_path=hdfs://server3:9000/edx-analytics-pipeline/warehouse/,
+ datetime=2023-01-21T160149, 
+partition_format=%Y-%m-%d, 
+output_root=hdfs://server3:9000/course_lists/)" -D 
+mapred.reduce.tasks=25 -D 
+stream.jobconf.truncate.limit=20000
+ -mapper "/usr/bin/python2.7 mrrunner.py map" 
+-reducer "/usr/bin/python2.7 mrrunner.py reduce"
+ -file /var/lib/analytics-tasks/analyticstack/venv/src/luigi/luigi/contrib/mrrunner.py
+ -file /tmp/tmpm2NbMK/packages.tar
+ -file /tmp/tmpm2NbMK/job-instance.pickle
+ -input hdfs://server3:9000/edx-analytics-pipeline/warehouse/course_list_raw/dt=2023-01-21/course_list.json
+ -output hdfs://server3:9000/course_lists
+
+
+['ssh', '-tt', '-o', 'ForwardAgent=yes', '-o', 'StrictHostKeyChecking=no', '-o', 'UserKnownHostsFile=/dev/null', '-o', 'KbdInteractiveAuthentication=no', '-o', 'PasswordAuthentication=no', '-o', 
+'User=hadoop', '-o', 'ConnectTimeout=10', 'server3', 
+"sudo -Hu hadoop /bin/bash -c 'cd /var/lib/analytics-tasks/analyticstack/repo && . $HOME/.bashrc && . /var/lib/analytics-tasks/analyticstack/venv/bin/activate &&
+ launch-task ImportEnrollmentsIntoMysql --local-scheduler --interval 2023-01-01-2023-01-06 --n-reduce-tasks 1 --overwrite-mysql --overwrite-hive --overwrite-n-days 2'"]
+
+ launch-task CourseTableTask  --local-scheduler (warehouse_path=hdfs://localhost:9000/edx-analytics-pipeline/warehouse/)
+
+remote-task --host server3 --user hadoop --remote-name analyticstack --skip-setup --wait CourseTableTask
+
+ launch-task  SqoopImportFromMysql  --local-scheduler 
+ launch-task  CourseEnrollmentEventsTask --local-scheduler   --interval 2016-08-13-2016-10-24   --n-reduce-tasks 1
+
+launch-task CourseMetaSummaryEnrollmentDataTask  --interval 2016-10-21-2016-10-22  --overwrite-n-days 2   --local-scheduler 
+source=["hdfs://localhost:9000/data/"] expand_interval=0 w 2 d 0 h 0 m 0 s, pattern=[".*tracking.log.*"], date_pattern=%Y%m%d, warehouse_path=hdfs://localhost:9000/edx-analytics-pipeline/warehouse/, date=2023-01-13, partner_short_codes=[], partner_api_urls=[], api_root_url=None,
+, enable_course_catalog=False)
+
+remote-task --host server3 --user vladimir --private-key /home/vladimir/yandex-fa.pem --remote-name analyticstack --skip-setup --wait \ 
+AnswerDistributionWorkflow --local-scheduler \
+--src hdfs://localhost:9000/data \
+--dest  hdfs://localhost:9000/edx-analytics-pipeline \
+--name hadoop  --output-root hdfs://localhost:9000/output/ \
+--include 'tracking.log.gz'  \
+--manifest hdfs://localhost:9000/data/manifest.txt  \
+--base-input-format "org.edx.hadoop.input.ManifestTextInputFormat" \
+ --lib-jar "hdfs://localhost:9000/edx-analytics-pipeline/packages/edx-analytics-hadoop-util.jar" --n-reduce-tasks 1 \
+--marker hdfs://localhost:9000/edx-analytics-pipeline/marker/  \
+--credentials "/edx/etc/edx-analytics-pipeline/output.json"
+
+ModuleEngagementWorkflowTask \
+--date $(date +%Y-%m-%d -d "2021-04-28") \
+--indexing-tasks 5 \
+--throttle 0.5 \
+--n-reduce-tasks 1
+
+CourseActivityWeeklyTask   --local-scheduler   --end-date $(date +%Y-%m-%d -d "$TO_DATE")   --weeks 24   --n-reduce-tasks 1   --skip-setup
+
+remote-task --host server3 --user vladimir --private-key /home/vladimir/yandex-fa.pem --remote-name analyticstack --skip-setup --wait  CourseActivityWeeklyTask --local-scheduler \
+  --end-date $(date +%Y-%m-%d -d "today") \
+  --weeks 24 \
+  --credentials /edx/etc/edx-analytics-pipeline/input.json \
+  --n-reduce-tasks 1
+
+remote-task --host server3 --branch open-release/hawthorn.master --repo https://github.com/edx/edx-analytics-pipeline --user hadoop  --override-config /edx/app/edx-analytics-pipeline/edx-analytics-pipeline/config/devstack.cfg --wheel-url http://edx-wheelhouse.s3-website-us-east-1.amazonaws.com/Ubuntu/precise --remote-name analyticstack --wait TotalEventsDailyTask --interval 2020-08-14-2020-08-29  --output-root hdfs://localhost:9000/output/  --local-scheduler
+
+remote-task --host server3 --user vladimir --private-key /home/vladimir/yandex-fa.pem --remote-name analyticstack --skip-setup --wait ImportEnrollmentsIntoMysql --interval 2020-01-01-2020-08-29 --local-scheduler --local-scheduler --overwrite-n-days 15 --verbose
+
+cd /var/lib/analytics-tasks/analyticstack/venv/share/edx.analytics.tasks/
+/var/lib/analytics-tasks/analyticstack/venv/bin/ansible-playbook  -vvv -i server3, -c local  /var/lib/analytics-tasks/analyticstack/venv/share/edx.analytics.tasks/task.yml  -e pipeline_repo_dir_name=repo -e item.url=https://github.com/openedx/edx-analytics-pipeline.git  -e item.dir_name= repo -e item.branch=master  -e  name=all  -e  branch=open-release/hawthorn.master   -e  write_luigi_config=false  -e  root_log_dir=/var/log/analytics-tasks  -e  root_data_dir=/var/lib/analytics-tasks  -e  override_config=/edx/app/edx-analytics-pipeline/edx-analytics-pipeline/config/devstack.cfg  -e  uuid=analyticstack -e repo.url=https://github.com/edx/edx-analytics-pipeline.git
