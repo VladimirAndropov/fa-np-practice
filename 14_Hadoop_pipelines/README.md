@@ -406,7 +406,7 @@ cd /edx/app/hadoop
 
 git clone https://github.com/VladimirAndropov/repo
 
-cd repo
+
 
 
 
@@ -419,6 +419,9 @@ sudo apt-get install python3-virtualenv libffi-dev python2-dbg python2-dev pytho
 virtualenv --python=/usr/bin/python2.7 pipeline
 
 source pipeline/bin/activate
+
+cd repo
+
 
 python -m pip install --upgrade pip
 
@@ -442,7 +445,7 @@ launch-task ModuleEngagementWorkflowTask \
 --local-scheduler
 
 launch-task ImportEnrollmentsIntoMysql --local-scheduler \
-  --interval 2018-01-01-2018-12-12 \
+  --interval 2015-01-01-2023-12-12 \
   --n-reduce-tasks 1 \
   --overwrite-mysql \
   --overwrite-hive  --overwrite-n-days 365
@@ -453,6 +456,9 @@ launch-task ImportEnrollmentsIntoMysql --local-scheduler \
 
 # Examples
 ```
+https://drive.google.com/file/d/1EJBboQLj7tpAmWg893hjaP98Zgr-_S9Q/view?usp=drive_link
+https://drive.google.com/file/d/1FyIp_Adr1X71_FCvOR1d5W3DFFIIkjdM/view?usp=drive_link
+
 remote-task --host localhost --repo https://github.com/edx/edx-analytics-pipeline --user ubuntu --override-config $HOME/edx-analytics-pipeline/config/devstack.cfg --wheel-url http://edx-wheelhouse.s3-website-us-east-1.amazonaws.com/Ubuntu/precise --remote-name analyticstack --wait TotalEventsDailyTask --interval 2016 --output-root hdfs://localhost:9000/output/ --local-scheduler
 ```
 If you got this far without error, you should try running the real pipeline tasks listed/linked below
