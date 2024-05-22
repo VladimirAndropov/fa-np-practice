@@ -403,10 +403,7 @@ bin/spark-submit --master local /edx/app/hadoop/spark/examples/src/main/python/w
 
 ## Run pipeline
 ```
-sudo mkdir /edx
-sudo chown student:student /edx
-mkdir /edx/app
-mkdir /edx/app/hadoop
+
 cd /edx/app/hadoop
 
 
@@ -444,7 +441,7 @@ python setup.py install
 luigid
 ```
 откройте страницу по адресу
-http://localhost:8082/
+http://server3:8082/
 
 
 open second console (terminal)
