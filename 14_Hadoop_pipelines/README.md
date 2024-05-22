@@ -445,8 +445,13 @@ luigid
 откройте страницу по адресу
 http://localhost:8082/
 
+
+open second console (terminal)
 ```
 
+cd /edx/app/haddop
+source pipeline/bin/activate
+cd repo 
 launch-task ModuleEngagementWorkflowTask \
 --date $(date +%Y-%m-%d -d "2021-12-12") \
 --indexing-tasks 5 \
