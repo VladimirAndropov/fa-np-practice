@@ -405,8 +405,8 @@ bin/spark-submit --master local /edx/app/hadoop/spark/examples/src/main/python/w
 sudo mkdir /edx
 sudo chown student:student /edx
 mkdir /edx/app
-mkdir /edx/app/haddop
-cd /edx/app/haddop
+mkdir /edx/app/hadoop
+cd /edx/app/hadoop
 
 
 git clone https://github.com/VladimirAndropov/repo
