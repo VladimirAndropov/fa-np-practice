@@ -406,6 +406,7 @@ bin/spark-submit --master local /edx/app/hadoop/spark/examples/src/main/python/w
 
 cd /edx/app/hadoop
 
+rm repo
 
 git clone https://github.com/VladimirAndropov/repo
 
