@@ -402,7 +402,12 @@ bin/spark-submit --master local /edx/app/hadoop/spark/examples/src/main/python/w
 
 ## Run pipeline
 ```
-cd /edx/app/hadoop
+sudo mkdir /edx
+sudo chown student:student /edx
+mkdir /edx/app
+mkdir /edx/app/haddop
+cd /edx/app/haddop
+
 
 git clone https://github.com/VladimirAndropov/repo
 
@@ -415,6 +420,10 @@ git clone https://github.com/VladimirAndropov/repo
 ```
 
 sudo apt-get install python3-virtualenv libffi-dev python2-dbg python2-dev python2.7-dbg python2.7-dev
+
+sudo apt install python2-setuptools-whl
+
+sudo apt install python2-pip-whl
 
 virtualenv --python=/usr/bin/python2.7 pipeline
 
