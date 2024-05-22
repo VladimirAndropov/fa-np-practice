@@ -438,11 +438,12 @@ python -m  pip install -r requirements/base.txt
 
 python -m pip install -r requirements/default.txt
 
+python setup.py install
 
 luigid
 ```
 откройте страницу по адресу
-http://server3:8082/
+http://localhost:8082/
 
 ```
 
