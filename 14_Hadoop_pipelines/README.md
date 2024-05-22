@@ -43,8 +43,9 @@ EOF
 ```
 sudo apt-get update
 
-sudo apt install openssh-client openssh-server openjdk-8-jre openjdk-8-jre-headless python2 python-is-python2 openjdk-8-jdk-headless python-numpy
+sudo apt install openssh-client openssh-server openjdk-8-jre openjdk-8-jre-headless python2  openjdk-8-jdk-headless 
 
+sudo apt install python-numpy python-is-python2
 sudo ln -s /usr/lib/jvm/java-8-openjdk-amd64 /usr/lib/jvm/java-8-oracle 
 
 ```
