@@ -450,7 +450,7 @@ http://localhost:8082/
 open second console (terminal)
 ```
 
-cd /edx/app/haddop
+cd /edx/app/hadoop
 source pipeline/bin/activate
 cd repo 
 launch-task ModuleEngagementWorkflowTask \
