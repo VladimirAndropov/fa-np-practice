@@ -479,6 +479,12 @@ sudo apt install mysql-server mysql-client libmysqlclient-dev
 pip install mysql-connector-python==8.0.15
 ```
 и заполнить БД тестовыми данными
+https://drive.google.com/file/d/1W4WPkHb9xRlbgsJMws9zDkd7IYa_UZOK/view?usp=sharing
+https://drive.google.com/file/d/1XWElIfB7nti_6hvctZPEQ2g9izqvFgSL/view?usp=sharing
+https://drive.google.com/file/d/124dtvIdgH9kUBzRHMbRH88aK7gDz0Exx/view?usp=sharing
+https://drive.google.com/file/d/1pt-DpKSXENSv0RADucjKSrZ_lJ7Mw7Io/view?usp=sharing
+https://drive.google.com/file/d/1XgjvIXhEYdA8tVDdNG24UHZx1V_J83bd/view?usp=sharing
+
 
 ```
 launch-task ImportEnrollmentsIntoMysql --local-scheduler \
