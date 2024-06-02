@@ -94,8 +94,8 @@
 | Семинар DO3.1  | [Лабораторная работа-13.1 ](13_Dockerfile/README.md)   | Portainer  |2    |
 |  Семинар Ml01  |[Лабораторная работа-1_ML](1_echo_server_ML)  | ![Протестировать обученную нейросеть](1_echo_server_ML/2024-06-02_09-06-52.png)   | 2    |
 |   [Лекция DO2.3](https://youtu.be/vd609d2Wc5E?si=-ejWPgaR3afhioZd)   |[Лабораторная работа-13.3 ](13_Dockerfile/README.md)   |  echo-server_ML в docker  |2    |
-|  Семинар Hadoop   |[Лабораторная работа-14](14_Hadoop_pipelines/README.md)  |  ![Hadoop+luigi](14_Hadoop_pipelines/2024-06-02_08-35-17.png)  | 2    |
-|  Семинар Hadoop+Spark   |[Лабораторная работа-14](14_Hadoop_pipelines/README.md)  |  ![Hadoop+luigi](14_Hadoop_pipelines/2024-06-02_08-35-17.png)  | 2    |
+|  Семинар Hadoop   |[Лабораторная работа-14](14_Hadoop_pipelines/README.md)  |  ![Hadoop+luigi](14_Hadoop_pipelines/2024-06-02_09-58-45.png)  | 2    |
+|  Семинар Hadoop+Spark   |[Лабораторная работа-14](14_Hadoop_pipelines/README.md)  |  ![Hadoop+luigi](14_Hadoop_pipelines/2024-06-02_10-02-25.png)  | 2    |
 |  Семинар Hadoop+Luigi   |[Лабораторная работа-14](14_Hadoop_pipelines/README.md)  |  ![Hadoop+luigi](14_Hadoop_pipelines/2024-06-02_08-35-17.png)  | 2    |
 |Семинар ex01 | [Лабораторная работа-16](16_экзамены)  | Решение задач   | 2    |
 

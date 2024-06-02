@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../../../edx/app/hadoop/repo"
+		}
+	],
+	"settings": {}
+}
