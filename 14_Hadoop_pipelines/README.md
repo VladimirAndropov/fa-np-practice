@@ -448,7 +448,7 @@ python setup.py install
 ```
 запускаем luigi
 ```
-luigid
+luigid & 
 ```
 откройте страницу по адресу
 http://server3:8082/
@@ -466,7 +466,7 @@ launch-task ModuleEngagementWorkflowTask \
 --date $(date +%Y-%m-%d -d "2021-12-12") \
 --indexing-tasks 5 \
 --throttle 0.5 \
---n-reduce-tasks 1 --local-scheduler
+--n-reduce-tasks 1
 ```
 запускаем класс который анализирует данные из Mysql кто когда зарегистрировался и из какого города с какого айпи и тп
 
@@ -488,8 +488,11 @@ launch-task ImportEnrollmentsIntoMysql --local-scheduler \
   --overwrite-hive  --overwrite-n-days 365
 
 
- launch-task UserActivityTask --local-scheduler   --interval 2015-01-01-2024-01-01   --n-reduce-tasks 1
+ launch-task UserActivityTask  --interval 2015-01-01-2024-01-01   --n-reduce-tasks 1
 ```
+Если всё получилось, выполняемые task отобразятся в luigi
+
+ ![](2024-06-02_08-35-17.png)
 
 # Рабочие примеры на живом сервере hadoop
 
