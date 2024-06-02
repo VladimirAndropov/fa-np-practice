@@ -1,10 +1,12 @@
 # docker-compose
 
-из двух семинаров
+из трех семинаров
 
-на первом семинаре установить mysql nginx через docker-compose
+- на первом семинаре установить mysql nginx через docker-compose
 
-на втором семинаре создать Dockerfile с приложением из 1_echo_server
+- на втором - установить portainer
+
+- на третьем семинаре создать Dockerfile с приложением из 1_echo_server_ML
 
 # создание Dockerfile
 
