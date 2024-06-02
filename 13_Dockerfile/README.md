@@ -3,10 +3,11 @@
 из трех семинаров
 
 - на первом семинаре установить mysql nginx через docker-compose
+[Методичка](13_Dockerfile/Методических_материалов_по_темам_«Контейнеризации_и_оркестровки.pdf)
 
 - на втором - установить portainer
-
-- на третьем семинаре создать Dockerfile с приложением из 1_echo_server_ML
+[Методичка](https://docs.portainer.io/v/2.20/start/install-ce/server/docker/linux)
+- на третьем семинаре создать Dockerfile с приложением из 1_echo_server_ML (читай дальше как)
 
 # создание Dockerfile
 
