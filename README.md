@@ -97,7 +97,7 @@
 |  Семинар Hadoop   |[Лабораторная работа-14.1](14_Hadoop_pipelines/README.md)  |  ![Hadoop+luigi](14_Hadoop_pipelines/2024-06-02_09-58-45.png)  | 2    |
 |  Семинар Hadoop+Spark   |[Лабораторная работа-14.2](14_Hadoop_pipelines/README.md)  |  ![Hadoop+luigi](14_Hadoop_pipelines/2024-06-02_10-02-25.png)  | 2    |
 |  Семинар Hadoop+Luigi   |[Лабораторная работа-14.3](14_Hadoop_pipelines/README.md)  |  ![Hadoop+luigi](14_Hadoop_pipelines/2024-06-02_08-35-17.png)  | 2    |
-|Семинар ex01 | [Лабораторная работа-16](16_экзамены)  | Решение задач   | 2    |
+|Контрольная работа ex01 | [Контрольная работа](16_control)  | Решение задач   | 2    |
 
 
 
